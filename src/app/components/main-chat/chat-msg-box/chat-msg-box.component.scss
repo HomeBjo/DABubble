@@ -1,0 +1,241 @@
+@import "../../../../styles.scss";
+
+section {
+  width: auto;
+  margin: 24px;
+  padding: 24px;
+  padding-bottom: 54px;
+  height: 95px;
+  border-radius: 40px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  margin-top: 12px;
+  background-color: #fff;
+  position: relative;
+  > textarea {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    resize: none;
+    font-family: "Nunito";
+    font-size: large;
+    input {
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-color: rgb(236, 236, 236);
+      width: 10px;
+      height: 10px;
+    }
+  }
+  .positionAllIcons {
+    @include displayFlex($j: space-between);
+    .positionSpecialIcons {
+      @include displayFlex($j: space-between, $g: 3px);
+    }
+  }
+  .sendIcon {
+    padding: 6px;
+    cursor: pointer;
+    transform: 0.3 ease-in-out;
+    &:hover {
+      scale: 1.1;
+      filter: brightness(0) saturate(100%) invert(56%) sepia(97%)
+        saturate(1270%) hue-rotate(204deg) brightness(95%) contrast(94%);
+    }
+  }
+}
+
+.sendIconDisabled{
+  padding: 6px;
+  transform: 0.3 ease-in-out;
+  filter: brightness(0) saturate(100%) invert(78%) sepia(4%) saturate(4098%) hue-rotate(207deg) brightness(99%) contrast(98%);
+}
+
+.verticalLine {
+  height: 28px;
+  padding: 6px;
+}
+
+app-small-btn {
+  padding: 6px 3px;
+}
+
+.fileBox {
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
+  padding: 5px 10px;
+  background-color: #eee;
+  max-width: 40px;
+  max-height: 20px;
+  margin-right: 12px;
+  position: relative;
+  @include displayFlex();
+  .fileIcons {
+    margin-left: 12px;
+    margin-right: 12px;
+    cursor: pointer;
+  }
+}
+
+app-emoji-picker {
+  position: absolute;
+  bottom: 50px;
+  left: 80px;
+  z-index: 3;
+}
+
+.posiotionDataFromPc {
+  margin-top: -40px;
+  display: flex;
+  width: 60px;
+}
+
+.closeIcon {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  width: 12px;
+  object-fit: contain;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+  &:hover {
+    background-color: red;
+    border-radius: 50%;
+  }
+}
+
+.smileysBackground {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+.showWanrningNotice {
+  animation: shwoWN 0.3s ease-in-out;
+}
+
+@keyframes shwoWN {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.positionOfAllUsersInBox {
+  position: absolute;
+  bottom: 36px;
+  @include displayFlex($j: flex-start, $a: flex-start);
+  flex-direction: column;
+  height: 210px;
+  overflow: auto;
+  width: 240px;
+  background-color: #fff;
+  border: 1px solid #745dda;
+  border-radius: 25px;
+  border-bottom-left-radius: 0;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding: 8px;
+  .user {
+    @include displayFlex($g: 12px);
+    padding: 6px;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+
+    &:hover {
+      background-color: #edeefe;
+      border-radius: 25px;
+    }
+
+    .positionImgs {
+      @include displayFlex($a: flex-end);
+
+      .avatarImg {
+        width: 40px;
+        height: 40px;
+        object-fit: cover;
+        border-radius: 50%;
+      }
+
+      .onlineIcon {
+        width: 12px;
+        height: 12px;
+        margin-left: -10px;
+      }
+    }
+  }
+}
+
+.addUserBox {
+  display: flex;
+}
+
+.warningMessage{
+  color: red;
+}
+
+.filteredElementWindow2 {
+  z-index: 1;
+  max-height: 240px;
+  overflow: auto;
+  scrollbar-width: none;
+  position: absolute;
+  bottom: 100%;
+  left: 100px;
+  border-radius: 25px;
+  border-bottom-left-radius: 0;
+  border: 1px solid #888dec;
+  background-color: #ffffff;
+  padding: 8px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  .user2 {
+    @include displayFlex($j: flex-start);
+    padding: 6px;
+    margin-bottom: 6px;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+    &:hover {
+      background-color: #edeefe;
+      border-radius: 25px;
+    }
+    .positionImgs2 {
+      @include displayFlex($a: flex-end);
+      .avatarImg2 {
+        width: 40px;
+        height: 40px;
+        object-fit: cover;
+        border-radius: 50%;
+      }
+      .onlineIconFilterWindow {
+        height: 12px;
+        width: 12px;
+        margin-left: -10px;
+        margin-right: 8px;
+      }
+    }
+  }
+}
+
+//----------- responsive ---------------
+
+@media screen and (max-width: $RESPONSIVE_THRESHOLD_MOBILE) {
+  section {
+    height: 50px;
+    padding-bottom: 54px;
+    margin: 12px;
+  }
+  
+  .warningMessage{
+    font-size: 12px;
+  }
+}

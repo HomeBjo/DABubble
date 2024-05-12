@@ -1,0 +1,135 @@
+@import "../../../shared/components/login/mixins/mixin.scss";
+.registerSektion {
+  @include SektionBody;
+}
+.registerContainer {
+  @include Card;
+  gap: 42px !important;
+}
+.registerTop {
+  @include topText;
+  > span {
+    width: 90%;
+    padding-right: 48px;
+  }
+}
+
+.registerBackImg {
+  cursor: pointer;
+}
+.registerInfoText {
+  @include InfoText;
+}
+.inputContainer {
+  position: relative;
+  margin-bottom: 32px;
+}
+.iconP {
+  position: absolute;
+  top: 16px;
+  left: 20px;
+}
+.inputField {
+  @include inputStyle;
+}
+
+.error {
+  @include errorStyle;
+}
+.contactForm {
+  width: 90%;
+}
+.checkBox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  > div {
+    cursor: pointer;
+  }
+}
+.registerBottom {
+  display: flex;
+  justify-content: end;
+  margin-top: 32px;
+}
+
+button {
+  @include buttonGrey;
+}
+.aktivButton {
+  @include aktivButtonBlue;
+}
+.aktivInput {
+  border: 1px solid#686868;
+}
+
+.fontColor {
+  color: #797ef3;
+  cursor: pointer;
+  &:hover {
+    font-weight: 500;
+    background-color: #eceefe;
+    padding: 2px 2px 2px 5px;
+    border-radius: 100px;
+    color: #444df2;
+  }
+}
+
+.passwordEye {
+  position: absolute;
+  top: 18px;
+  right: 25px;
+}
+
+@media (max-width: 570px) {
+  .registerTop {
+    margin-bottom: 0;
+    > span {
+      font-size: 32px;
+    }
+  }
+  .registerInfoText {
+    margin-bottom: 0;
+    > span {
+      font-size: 17px;
+    }
+  }
+  .registerContainer {
+    padding: 16px;
+    max-height: 552px;
+    padding-left: 18px;
+    padding-right: 18px;
+    gap: 12px;
+    max-width: 400px;
+  }
+  .contactForm {
+    width: 100%;
+  }
+  .inputContainer {
+    margin-bottom: 22px;
+  }
+  .inputField {
+    height: 52px;
+    font-size: 15px;
+  }
+  .iconP {
+    top: 15px;
+  }
+  .registerBottom {
+    margin-top: 26px;
+    gap: 24px;
+  }
+  .guestButton {
+    font-size: 17px;
+    white-space: nowrap;
+  }
+  .aktivButton {
+    font-size: 17px;
+  }
+}
+@media (max-width: 380px) {
+  .registerContainer {
+    max-width: 306px;
+    gap: 12px !important;
+  }
+}

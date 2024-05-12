@@ -1,0 +1,146 @@
+@import "../../../shared/components/login/mixins/mixin.scss";
+* {
+  font-family: Nunito;
+}
+
+.avatarSektion {
+  @include SektionBody;
+}
+.avatarContainer {
+  @include Card;
+}
+.avatarTop {
+  @include topText;
+  > span {
+    width: 90%;
+    padding-right: 48px;
+  }
+}
+.viewAvatarContainer {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  gap: 24px;
+  > img {
+    height: 168px;
+    width: 168px;
+    border-radius: 100%;
+    object-fit: cover;
+  }
+  > span {
+    font-size: 32px;
+    font-weight: 700;
+  }
+}
+.chooseAvatarContainer {
+  gap: 16px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 8px;
+  > div {
+    display: flex;
+    gap: 4px;
+    > span {
+      font-size: 20px;
+      font-weight: 400;
+    }
+    > img {
+      height: 72px;
+      border-radius: 100%;
+      border: 4px solid #ffff;
+      cursor: pointer;
+      &:hover {
+        border: 4px solid #cacad6;
+      }
+    }
+  }
+}
+.ownAvatarContainer {
+  display: flex;
+  gap: 32px;
+  margin-right: 67px;
+  > div {
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    font-weight: 400;
+  }
+}
+.BtnUpload {
+  background-color: #ffff;
+  color: #444df2;
+  border: 1px solid #444df2;
+  cursor: pointer;
+  &:hover {
+    background-color: #444df2;
+    color: #ffff;
+  }
+}
+
+.avatarBottom {
+  display: flex;
+  justify-content: end;
+
+  width: 100%;
+}
+
+button {
+  @include buttonGrey;
+  cursor: pointer;
+}
+.hoverBtn {
+  &:hover {
+    background-color: #676eec;
+  }
+}
+@media (max-width: 570px) {
+  .avatarTop {
+    margin-bottom: 0;
+
+    > span {
+      font-size: 32px;
+      white-space: nowrap;
+    }
+  }
+  .viewAvatarContainer {
+    > img {
+      height: 148px;
+      width: 148px;
+    }
+  }
+  .chooseAvatarContainer {
+    width: 100%;
+  }
+  .mobileImgContainer {
+    overflow: auto;
+  }
+  .ownAvatarContainer {
+    margin-right: 0;
+    gap: 16px;
+    flex-direction: column;
+  }
+  .avatarBottom {
+    margin-top: 8px;
+  }
+  .BtnUpload {
+    &:hover {
+      background-color: #ffff;
+      color: #444df2;
+    }
+  }
+  .hoverBtn {
+    background-color: #676eec;
+  }
+  @media (max-width: 380px) {
+    .avatarContainer {
+      max-width: 306px;
+    }
+    .avatarTop {
+      width: 95%;
+      > span {
+        font-size: 24px;
+      }
+    }
+  }
+}

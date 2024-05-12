@@ -1,0 +1,59 @@
+<section>
+  <div class="headline">
+    <div class="headlineText" (click)="minimizeAllChannels()">
+      <img
+        src="./assets/img/sidebar/{{
+          !minimizeChannels ? 'arrow_right.png' : 'arrow-drop-down.svg'
+        }}"
+        class="arrowImg"
+      />
+      <img src="./assets/img/sidebar/bubbles.svg" alt="" />
+      <p> {{ 'sidebar-channels.channel' | translate }}</p>
+    </div>
+    <div class="btn">
+      <app-small-btn
+        [imgSrc]="'add.svg'"
+        [imgSize]="'14px'"
+        [btnSize]="'28px'"
+        [btnBgHoverColor]="'#edeefe'"
+        (click)="openAddChannelWindow()"
+        style="margin-right: -11px"
+      >
+      </app-small-btn>
+    </div>
+  </div>
+  <div
+    class="boxOfAllChannels"
+    [ngClass]="{
+      hideAllChannels: !minimizeChannels,
+      showAllChanneld: minimizeChannels
+    }"
+  >
+    @for (channel of getChannels(); track channel; let i = $index) {
+    <div
+      class="channelName"
+      routerLink="/main/{{ channel.id }}"
+      (click)="closeSecondaryChatAndSidebar()"
+      [ngClass]="{
+        active: currentChannel == channel.id
+      }"
+    >
+      <img src="./assets/img/hashtag.svg" alt="" />
+      <p>{{ channel.name }}</p>
+    </div>
+    }
+  </div>
+  <div class="addChannel" (click)="openAddChannelWindow()">
+    <div class="circle">
+      <img src="./assets/img/sidebar/add-circle.svg" alt="" />
+    </div>
+    <p>{{ 'sidebar-channels.addChannel' | translate }}</p>
+  </div>
+  <app-add-new-channel
+    [viewWidth]="viewWidth"
+    [ngClass]="{
+      dBlock: channelService.showAddChannelBox,
+      dNone: !channelService.showAddChannelBox
+    }"
+  ></app-add-new-channel>
+</section>

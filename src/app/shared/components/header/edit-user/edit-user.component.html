@@ -1,0 +1,55 @@
+<div class="grayBackground" (click)="closeCurrentProfile()"></div>
+@for(i of userService.getCurentUsers(); track i){
+<div class="whiteBox">
+  <div class="boxHeader">
+    <p>Profil</p>
+    <app-small-btn
+      [imgSrc]="'closeIcon.svg'"
+      [imgSize]="'18px'"
+      [btnSize]="'32px'"
+      [btnBgHoverColor]="'#edeefe'"
+      (click)="closeCurrentProfile()"
+    ></app-small-btn>
+  </div>
+  <img src="{{ i.avatar }}" class="profileImg" (click)="showSideMenu()" />
+  <div class="detailsBox">
+    <div class="editBtnPosition">
+      <p class="name">{{ i.firstName }} {{ i.lastName }}</p>
+      <app-small-btn
+        [imgSrc]="'pencil.svg'"
+        [imgSize]="'18px'"
+        [btnSize]="'32px'"
+        [btnBgHoverColor]="'#edeefe'"
+        (click)="openEditUser()"
+      ></app-small-btn>
+    </div>
+
+    <div class="statusBox">
+      <img
+        src="./assets/img/{{ i.status ? 'onlineRing.svg' : 'offlineRing.svg' }}"
+      />
+      @if (i.status) {
+      <p class="fontColorGreen">Aktiv</p>
+      } @else {
+      <p>Offline</p>
+      }
+    </div>
+
+    <div class="emailBox">
+      <img src="./assets/img/mail-icon.svg" />
+      <div class="email">
+        <p>{{ "edit-user.email" | translate }}</p>
+        <a href="mailto: {{ i.email }}">{{ i.email }}</a>
+      </div>
+    </div>
+  </div>
+</div>
+}
+
+<app-edit-user-details
+  [ngClass]="{ dBlock: openEditUserValue, dNone: !openEditUserValue }"
+  [openEditUserValue]="openEditUserValue"
+  [showCurrentProfile]="showCurrentProfile"
+  (closeEditWindow)="updateCloseValue($event)"
+  (saveUserData)="updateCloseValue($event)"
+></app-edit-user-details>

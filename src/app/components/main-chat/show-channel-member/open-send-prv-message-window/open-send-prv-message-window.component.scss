@@ -1,0 +1,188 @@
+@import "../../../../../styles.scss";
+
+.darkBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 4;
+}
+
+.whiteBox {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 440px;
+  height: auto;
+  background-color: whitesmoke;
+  border-radius: 35px;
+  z-index: 15;
+  @include displayFlex();
+  flex-direction: column;
+  padding-top: 32px;
+  .boxHeader {
+    width: 360px;
+    @include displayFlex($j: space-between);
+    p {
+      font-size: 24px;
+      font-weight: 700;
+    }
+    .positionCloseIcon {
+      width: 40px;
+      height: 40px;
+      @include displayFlex();
+      margin-right: -10px;
+      transition: 0.3s ease-in-out;
+      &:hover {
+        background-color: #eceefe;
+        border-radius: 25px;
+        cursor: pointer;
+        > img {
+          filter: invert(59%) sepia(26%) saturate(871%) hue-rotate(199deg)
+            brightness(93%) contrast(100%);
+        }
+      }
+    }
+  }
+  .profileImg {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin: 24px;
+  }
+  > button {
+    @include displayFlex($g: 12px);
+    background-color: #676eee;
+    border: none;
+    border-radius: 25px;
+    padding: 12px;
+    padding-left: 22px;
+    padding-right: 22px;
+    font-size: larger;
+    font-weight: 500;
+    color: white;
+    margin: 32px;
+    margin-top: 0;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    &:hover {
+      background-color: #444df2;
+      box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px,
+        rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+    }
+  }
+}
+
+.detailsBox {
+  width: 360px;
+  .editBtnPosition {
+    @include displayFlex($j: space-between);
+    margin-bottom: 20px;
+    .name {
+      font-size: 32px;
+      font-weight: 700;
+    }
+    .editBtn {
+      color: #535af1;
+      cursor: pointer;
+      &:hover {
+        font-weight: 600;
+      }
+    }
+  }
+  .statusBox {
+    @include displayFlex($j: flex-start, $g: 12px);
+    margin-bottom: 40px;
+    > p {
+      margin: 0;
+      font-size: medium;
+      font-weight: 500;
+    }
+  }
+}
+
+.fontColorGreen {
+  color: #92c83e;
+}
+
+.emailBox {
+  @include displayFlex($j: flex-start, $a: flex-start, $g: 20px);
+  height: 96px;
+  margin-top: 24px;
+  img {
+    width: 25px;
+    height: 20px;
+    margin-top: 3px;
+  }
+  .email {
+    > p {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+    > a {
+      color: #4ea1ff;
+      font-size: 16px;
+      text-decoration: none;
+      margin-bottom: 20px;
+      background: linear-gradient(currentColor 0 0) bottom left/
+        var(--underline-width, 0%) 0.1em no-repeat;
+      display: inline-block;
+      transition: background-size 0.5s;
+      &:hover {
+        --underline-width: 100%;
+      }
+    }
+  }
+}
+
+/*------------- RESPONSIVE -------------*/
+
+@media screen and (max-width: $RESPONSIVE_THRESHOLD_MOBILE) {
+  .whiteBox {
+    width: 280px;
+    padding-top: 16px;
+    .boxHeader {
+      width: 230px;
+      p {
+        font-size: 21px;
+        font-weight: 700;
+      }
+    }
+    .profileImg {
+      width: 120px;
+      height: 120px;
+      margin: 20px;
+    }
+  }
+  .detailsBox {
+    width: 230px;
+    .editBtnPosition {
+      .name {
+        font-size: 24px;
+        font-weight: 700;
+      }
+    }
+  }
+
+  .emailBox {
+    @include displayFlex($j: flex-start, $a: flex-start, $g: 10px);
+    img {
+      margin-top: 2px;
+    }
+    .email {
+      > p {
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 10px;
+      }
+      > a {
+        margin-bottom: 0;
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+.smallBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100%;
+  width: 0;
+  height: 0;
+  cursor: pointer;
+  transition: 0.125s ease-in-out;
+  &:hover {
+    background-color: var(--btnBgHoverColor);
+    img {
+      scale: 1.1;
+      filter: var(--filter);
+    }
+  }
+}

@@ -1,0 +1,54 @@
+@import "./../../../../styles.scss";
+
+section{
+    position: relative;
+    @include displayFlex();
+    .whiteBox{
+        z-index: 1;
+        position: absolute;
+        top: -16px;
+        left: 322px;
+        @include displayFlex();
+        width: auto;
+        height: 56px;
+        background-color: #fff;
+        padding: 2px 8px 2px;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        border-radius: 34px;
+        border-top-left-radius: 0;
+        box-shadow: rgb(111 139 169) 0px 20px 30px -10px;
+        input{
+            width: 30vw;
+            height: 46px;
+            border-radius: 26px;
+            padding-right: 40px;
+            padding-left: 8px;
+            margin-right: 2px;
+            font-size: larger;
+            border: 1px solid #888dec;
+            font-family: "Nunito", sans-serif;
+            outline: none;
+            &:hover{
+                border: 1px solid #5f66e7;
+            }
+        }
+        img{
+            margin-left: -36px;
+            padding-right: 4px;
+            cursor: pointer;
+        }
+    }
+}
+
+.suggestions{
+    width: 200px;
+    height: 300px;
+    background-color: coral;
+    position: absolute;
+    top: 46px;
+    left: 360px;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+    z-index: 1;
+    box-shadow: rgb(111 139 169) 0px 20px 30px -10px;
+}

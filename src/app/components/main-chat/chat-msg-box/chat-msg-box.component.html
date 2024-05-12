@@ -1,0 +1,132 @@
+<section (mouseleave)="mouseLeave()">
+  <div [ngClass]="{ posiotionDataFromPc: hasFile, '': !hasFile }">
+    @if(hasFile){
+    <div
+      class="fileBox"
+      [ngClass]="{ dBlock: hasFile, dNone: !hasFile }"
+      *ngFor="let file of this.downloadFilesService.uploadFiles"
+    >
+      <img
+        src=" {{ checkIcon(file) }}"
+        class="fileIcons"
+        (click)="showCurrentFile(file)"
+      />
+      <img
+        src="./assets/img/closeIcon.svg"
+        class="closeIcon"
+        (click)="deleteFile(file)"
+      />
+    </div>
+    }
+    <input
+      type="file"
+      #fileInput
+      id="file"
+      style="display: none"
+      (change)="onFileChange($event)"
+      multiple
+    />
+  </div>
+  <textarea
+    #textarea
+    placeholder=" {{ 'channel-msg-box.placeholder' | translate }}"
+    type="text"
+    name="textarea"
+    [(ngModel)]="textArea"
+    (keyup)="sendMessageWithEnter($event); checkChannelAndUser($event)"
+  ></textarea>
+  <div class="positionAllIcons">
+    <div class="positionSpecialIcons">
+      <app-small-btn
+        [imgSrc]="'addIcon.svg'"
+        [imgSize]="'16px'"
+        [btnSize]="'24px'"
+        [btnBgHoverColor]="'#edeefe'"
+        (click)="fileInput.click()"
+      ></app-small-btn>
+      <img class="verticalLine" src="./assets/img/verticalLine.svg" />
+      <app-small-btn
+        [imgSrc]="'smileIcon.svg'"
+        [imgSize]="'20px'"
+        [btnSize]="'32px'"
+        [btnBgHoverColor]="'#edeefe'"
+        (click)="toggleEmojiPicker()"
+      ></app-small-btn>
+      @if (target == 'chats') {
+      <app-small-btn
+        [imgSrc]="'atIcon.svg'"
+        [imgSize]="'20px'"
+        [btnSize]="'32px'"
+        [btnBgHoverColor]="'#edeefe'"
+        (click)="targetChatUser($event)"
+      ></app-small-btn>
+      <div class="filteredElementWindow">
+        @if (toggleBoolean.selectUserInMsgBox) {
+        <div class="positionOfAllUsersInBox">
+          @for(user of userService.getFiltertUsers; track user){
+          <div class="user" (click)="chooseUser(user)">
+            <div class="positionImgs">
+              <img src="{{ user.avatar }}" class="avatarImg" />
+              <img
+                src="./assets/img/{{
+                  user.status ? 'onlineRing.svg' : 'offlineRing.svg'
+                }}"
+                class="onlineIcon"
+              />
+            </div>
+            <h1>{{ user.firstName }} {{ user.lastName }}</h1>
+          </div>
+          }
+        </div>
+        }
+      </div>
+      } @if(downloadFilesService.uploadFiles.length >= 1){
+      <p
+        [ngClass]="{
+          showWanrningNotice: downloadFilesService.uploadFiles.length >= 1
+        }"
+        class="warningMessage"
+      >
+        {{ "channel-msg-box.text" | translate }}
+      </p>
+      }
+    </div>
+    @if(textArea == ''){
+    <img src="./assets/img/sendIcon.svg" class="sendIconDisabled" />
+    } @else {
+    <img
+      src="./assets/img/sendIcon.svg"
+      class="sendIcon"
+      (click)="sendMessage()"
+    />
+    }
+    <!--- show chnnels or users by pressing @ or #-->
+    @if (openSmallWindow) {
+    <div class="filteredElementWindow2">
+      @if (showChannels) { @for (i of checkIfUserHasAccessToChannel(); track
+      $index) {
+      <h3 class="user2" (click)="chooseElement(i)">{{ i.name }}</h3>
+      } }@else if (showUsers) { @for (i of userService.allUsers; track $index) {
+      <div class="user2" (click)="chooseElement(i)">
+        <div class="positionImgs2">
+          <img src="{{ i.avatar }}" class="avatarImg2" />
+          <img
+            src="./assets/img/{{
+              i.status ? 'onlineRing.svg' : 'offlineRing.svg'
+            }}"
+            class="onlineIconFilterWindow"
+          />
+        </div>
+        <h3>{{ i.firstName }} {{ i.lastName }}</h3>
+      </div>
+      } }
+    </div>
+    }
+  </div>
+  @if (isEmojiPickerVisible) {
+  <app-emoji-picker
+    [output]="'native'"
+    (emojiOutputEmitter)="emojiOutputEmitter($event)"
+  ></app-emoji-picker>
+  }
+</section>

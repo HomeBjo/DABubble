@@ -1,0 +1,68 @@
+<ng-container *ngIf="downloadFilesService.downloadedFiles | async as files">
+  <div class="attachments" *ngFor="let folder of files">
+    <div *ngIf="chatId == folder.id">
+      <br />
+      <div class="files">
+        <div *ngFor="let file of folder.files">
+          <div class="filesView">
+            @if (['png', 'jpg', 'jpeg', 'gif'].includes(getFileType(file))) {
+            <img
+              src="{{ file }}"
+              alt="image"
+              loading="lazy"
+              [ngStyle]="{
+                height:
+                  openOnSecondaryChat && viewWidth >= RESPONSIVE_THRESHOLD
+                    ? '5vw'
+                    : '7.5vw'
+              }"
+              (click)="showOverlay(file)"
+            />
+            } @if (['pdf', 'doc', 'txt'].includes(getFileType(file))) {
+            <a href="{{ file }}" target="_blank">
+              <img
+                class="otherFiles"
+                src="./assets/img/attachments/{{ getFileType(file) }}.png"
+                alt="image"
+                loading="lazy"
+                [ngStyle]="{
+                  height:
+                    openOnSecondaryChat && viewWidth >= RESPONSIVE_THRESHOLD
+                      ? '3vw'
+                      : '5vw'
+                }"
+            /></a>
+            } @if (['mp3', 'wav', 'wma'].includes(getFileType(file))) {
+            <audio
+              controls
+              preload="auto"
+              src="{{ file }}"
+              loading="lazy"
+              [ngStyle]="{
+                width:
+                  openOnSecondaryChat && viewWidth >= RESPONSIVE_THRESHOLD
+                    ? '250px'
+                    : ''
+              }"
+            ></audio>
+            }@if (getFileType(file) === 'mp4') {
+            <div (click)="showOverlay(file)">
+              <video
+                src="{{ file }}"
+                alt="video"
+                loading="lazy"
+                [ngStyle]="{
+                  height:
+                    openOnSecondaryChat && viewWidth >= RESPONSIVE_THRESHOLD
+                      ? '5vw'
+                      : '7.5vw'
+                }"
+              ></video>
+            </div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>

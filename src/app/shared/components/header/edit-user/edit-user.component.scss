@@ -1,0 +1,192 @@
+@import "../../../../../styles.scss";
+
+.grayBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.3);
+  @include displayFlex();
+  z-index: 2;
+}
+
+.whiteBox {
+  width: 400px;
+  height: auto;
+  background-color: white;
+  border-radius: 35px;
+  position: absolute;
+  z-index: 5;
+  top: 110px;
+  right: 20px;
+  @include displayFlex();
+  flex-direction: column;
+  padding: 24px;
+  .boxHeader {
+    width: 360px;
+    @include displayFlex($j: space-between);
+    p {
+      font-size: 24px;
+      font-weight: 700;
+    }
+  }
+  .profileImg {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin: 56px;
+  }
+  > button {
+    @include displayFlex($g: 12px);
+    background-color: #444df2;
+    border: none;
+    border-radius: 25px;
+    padding: 12px;
+    padding-left: 22px;
+    padding-right: 22px;
+    font-size: larger;
+    font-weight: 500;
+    color: white;
+    margin: 32px;
+    cursor: pointer;
+  }
+}
+
+.detailsBox {
+  width: 360px;
+  .editBtnPosition {
+    @include displayFlex($j: space-between);
+    margin-bottom: 20px;
+    .name {
+      font-size: 32px;
+      font-weight: 700;
+    }
+    .editBtn {
+      color: #535af1;
+      cursor: pointer;
+      &:hover {
+        font-weight: 600;
+      }
+    }
+  }
+  .statusBox {
+    @include displayFlex($j: flex-start, $g: 12px);
+    margin-bottom: 40px;
+    > p {
+      margin: 0;
+      font-size: medium;
+      font-weight: 500;
+    }
+  }
+}
+
+.fontColorGreen {
+  color: #92c83e;
+}
+
+.emailBox {
+  @include displayFlex($j: flex-start, $a: flex-start, $g: 20px);
+  height: 96px;
+  margin-top: 24px;
+  img {
+    width: 25px;
+    height: 20px;
+    margin-top: 3px;
+  }
+  .email {
+    > p {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+    > a {
+      color: #4ea1ff;
+      font-size: 16px;
+      text-decoration: none;
+      margin-bottom: 20px;
+      background: linear-gradient(currentColor 0 0) bottom left/
+        var(--underline-width, 0%) 0.1em no-repeat;
+      display: inline-block;
+      transition: background-size 0.5s;
+      &:hover {
+        --underline-width: 100%;
+      }
+    }
+  }
+}
+
+/*------------- RESPONSIVE -------------*/
+
+@media screen and (max-width: $RESPONSIVE_THRESHOLD_MAX) {
+  .arrowLeft {
+    display: block;
+    margin-left: 18px;
+    transition: 0.3 linear;
+    &:hover {
+      cursor: pointer;
+      scale: 1.2;
+    }
+  }
+}
+
+@media screen and (max-width: $RESPONSIVE_THRESHOLD_MOBILE) {
+  .whiteBox {
+    border-radius: 35px;
+    width: auto;
+    right: 22px;
+    height: fit-content;
+    top: unset;
+    right: 15vw;
+    left: 15vw;
+    padding: 24px;
+    .boxHeader {
+      width: 100%;
+      padding: 0 12px;
+      p {
+        font-size: 21px;
+        font-weight: 700;
+      }
+    }
+    .profileImg {
+      width: 120px;
+      height: 120px;
+      margin: 18px;
+    }
+  }
+  .detailsBox {
+    width: 100%;
+    padding: 0 12px;
+    .editBtnPosition {
+      .name {
+        font-size: 24px;
+        font-weight: 700;
+      }
+    }
+  }
+
+  .emailBox {
+    @include displayFlex($j: flex-start, $a: flex-start, $g: 10px);
+    img {
+      margin-top: 2px;
+    }
+    .email {
+      > p {
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 10px;
+      }
+      > a {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .whiteBox {
+    right: 5vw;
+    left: 5vw;
+  }
+}

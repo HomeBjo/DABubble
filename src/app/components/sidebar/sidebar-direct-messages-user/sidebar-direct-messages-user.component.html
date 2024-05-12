@@ -1,0 +1,81 @@
+<section>
+  @for (directMessage of
+  displayPrivateChat(this.userService.getCurrentUserId()); track directMessage;
+  let i = $index) {
+  <!-- PRIVAT CHAT (Message Yourself) -->
+  @if (directMessage.creatorId === this.userService.getCurrentUserId() &&
+  directMessage.talkToUserId === this.userService.getCurrentUserId()) { @for
+  (user of getChatUsers(directMessage.creatorId); track user){
+  <div
+    class="user"
+    routerLink="/main/{{ directMessage.id }}"
+    (click)="closeSecondaryChatAndSidebar()"
+    [ngClass]="{
+      active: currentChannel == directMessage.id
+    }"
+  >
+    <div class="imgBox">
+      <img src="{{ user.avatar }}" class="userImg" />
+      <img
+        src="./assets/img/{{
+          user.status ? 'onlineRing.svg' : 'offlineRing.svg'
+        }}"
+        class="onlineIcon"
+      />
+    </div>
+    <p>
+      {{ user.firstName }} {{ user.lastName }} ({{
+        "sidebar-direct-messages-user.you" | translate
+      }})
+    </p>
+  </div>
+  } }
+  <!-- PRIVAT CHAT (creatorId) -->
+  @if (directMessage.talkToUserId === this.userService.getCurrentUserId() &&
+  directMessage.creatorId !== this.userService.getCurrentUserId()) { @for (user
+  of getChatUsers(directMessage.creatorId); track user){
+  <div
+    class="user"
+    routerLink="/main/{{ directMessage.id }}"
+    (click)="closeSecondaryChatAndSidebar()"
+    [ngClass]="{
+      active: currentChannel == directMessage.id
+    }"
+  >
+    <div class="imgBox">
+      <img src="{{ user.avatar }}" class="userImg" />
+      <img
+        src="./assets/img/{{
+          user.status ? 'onlineRing.svg' : 'offlineRing.svg'
+        }}"
+        class="onlineIcon"
+      />
+    </div>
+    <p>{{ user.firstName }} {{ user.lastName }}</p>
+  </div>
+  } }
+  <!-- PRIVAT CHAT (talkToUserId) -->
+  @if (directMessage.creatorId === this.userService.getCurrentUserId() &&
+  directMessage.talkToUserId !== this.userService.getCurrentUserId()) { @for
+  (user of getChatUsers(directMessage.talkToUserId); track user){
+  <div
+    class="user"
+    routerLink="/main/{{ directMessage.id }}"
+    (click)="closeSecondaryChatAndSidebar()"
+    [ngClass]="{
+      active: currentChannel == directMessage.id
+    }"
+  >
+    <div class="imgBox">
+      <img src="{{ user.avatar }}" class="userImg" />
+      <img
+        src="./assets/img/{{
+          user.status ? 'onlineRing.svg' : 'offlineRing.svg'
+        }}"
+        class="onlineIcon"
+      />
+    </div>
+    <p>{{ user.firstName }} {{ user.lastName }}</p>
+  </div>
+  } } }
+</section>

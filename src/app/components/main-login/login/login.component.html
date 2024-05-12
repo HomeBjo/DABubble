@@ -1,0 +1,102 @@
+<div class="loginSektion startIntroScrollProtect">
+  <app-start-header></app-start-header>
+  <div class="loginContainer">
+    <div class="loginTop">
+      <span>{{ "login.header" | translate }}</span>
+    </div>
+    <div class="loginInfoText">
+      <span>{{ "login.infoText" | translate }}</span>
+    </div>
+    <form (ngSubmit)="onSubmit()" #contactForm="ngForm" class="contactForm">
+      <div class="inputContainer">
+        <img class="iconP" src="./assets/img/login/mail.png" alt="" />
+        <input
+          class="inputField"
+          #emailField="ngModel"
+          [(ngModel)]="loginService.email"
+          id="email"
+          name="email"
+          type="email"
+          placeholder="{{ 'login.inputField' | translate }}"
+          required
+          [ngClass]="{ aktivInput: emailField.valid && emailField.touched }"
+          pattern="[^@]+@[^.]+\..+"
+        />
+        @if (!emailField.valid && emailField.touched) {
+        <p class="error">{{ "login.errorText" | translate }}</p>
+        }
+      </div>
+      <div class="inputContainer">
+        <img class="iconP" src="./assets/img/login/lock.png" alt="" />
+        <input
+          class="inputField"
+          #passwordField="ngModel"
+          minlength="6"
+          maxlength="16" 
+          [(ngModel)]="this.loginService.password"
+          name="password"
+          [type]="loginService.passwordFieldType"
+          placeholder="{{ 'login.inputField2' | translate }}"
+          id="message"
+          required
+          [ngClass]="{
+            aktivInput: passwordField.valid && passwordField.touched
+          }"
+          cols="30"
+          rows="10"
+        />
+        <img class="passwordEye" (click)="loginService.togglePasswordVisibility()" [src]="loginService.passwordIcon" alt="Toggle visibility">
+        @if (!passwordField.valid && passwordField.touched) {
+        <p class="error">{{ "login.errorText2" | translate }}</p>
+        } @if (loginService.errorMessage) {
+        <p class="error">{{ loginService.errorMessage }}</p>
+        }
+      </div>
+
+      <div class="passwordContainer">
+        <span routerLink="/passwordForget">{{
+          "login.midText" | translate
+        }}</span>
+      </div>
+
+      <div class="separatorContainer">
+        <div></div>
+        <span>{{ "login.midSeperator" | translate }}</span>
+        <div></div>
+      </div>
+
+      <div (click)="loginService.googleLogin()" class="googleLogingContainer">
+        <img src="./assets/img/login/google.svg" alt="" />
+        <span>{{ "login.googleBtn" | translate }}</span>
+      </div>
+
+      <div class="loginBottom">
+        <button
+          type="submit"
+          [ngClass]="{ aktivButton: contactForm.valid }"
+          [disabled]="!contactForm.valid"
+        >
+          {{ "login.BtnLeft" | translate }}
+        </button>
+        <button
+          type="button"
+          class="guestButton"
+          (click)="loginService.guestLogin()"
+        >
+          {{ "login.BtnRight" | translate }}
+        </button>
+      </div>
+    </form>
+  </div>
+  <div class="mobileRegisterContainer">
+    <div>
+      <span> {{ "login.topText" | translate }}</span>
+      <div class="mobileCreateAccountContainer">
+        <span routerLink="/register" class="mobileCreateAccoun">
+          {{ "login.topText2" | translate }}</span
+        >
+      </div>
+    </div>
+  </div>
+  <app-footer></app-footer>
+</div>

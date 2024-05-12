@@ -1,0 +1,34 @@
+<section>
+  <div class="whiteBoxAllUsersWindow">
+    <div class="positionHeader">
+      <p>{{ "sidebar-direct-messages.members" | translate }}</p>
+      <app-small-btn
+        [imgSrc]="'closeIcon.svg'"
+        [imgSize]="'16px'"
+        [btnSize]="'32px'"
+        [btnBgHoverColor]="'#edeefe'"
+        (click)="toggleMemberList()"
+        style="margin-right: -12px"
+      ></app-small-btn>
+    </div>
+    <div class="positionOfAllUsersInBox">
+      @for(user of userService.getUsers(); track user){
+      <div
+        class="user"
+        (click)="checkRoute([user]); closeSecondaryChatAndSidebar()"
+      >
+        <div class="positionImgs">
+          <img src="{{ user.avatar }}" class="avatarImg" />
+          <img
+            src="./assets/img/{{
+              user.status ? 'onlineRing.svg' : 'offlineRing.svg'
+            }}"
+            class="onlineIcon"
+          />
+        </div>
+        <h1>{{ user.firstName }} {{ user.lastName }}</h1>
+      </div>
+      }
+    </div>
+  </div>
+</section>

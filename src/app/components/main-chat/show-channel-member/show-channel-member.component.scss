@@ -1,0 +1,344 @@
+@import "../../../../styles.scss";
+
+.darkBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 3;
+}
+
+.whiteBox {
+  position: absolute;
+  top: 199px;
+  right: 108px;
+  width: 320px;
+  height: fit-content;
+  z-index: 4;
+  border-radius: 35px;
+  border-top-right-radius: 0;
+  background-color: whitesmoke;
+  padding: 24px;
+  @include displayFlex($g: 20px);
+  flex-direction: column;
+
+  .posiotionHeader {
+    @include displayFlex($j: space-between);
+    font-size: 24px;
+    font-weight: 600;
+    width: 100%;
+  }
+}
+
+.positionOfAllUsersInBox {
+  @include displayFlex($j: flex-start, $a: flex-start);
+  flex-direction: column;
+  height: fit-content;
+  max-height: 300px;
+  overflow: auto;
+  width: 100%;
+
+  .user {
+    @include displayFlex($g: 12px);
+    padding: 6px;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+
+    &:hover {
+      background-color: #edeefe;
+      border-radius: 25px;
+    }
+
+    .positionImgs {
+      @include displayFlex($a: flex-end);
+
+      .avatarImg {
+        width: 40px;
+        height: 40px;
+        object-fit: cover;
+        border-radius: 50%;
+      }
+
+      .onlineIcon {
+        width: 12px;
+        height: 12px;
+        margin-left: -10px;
+      }
+    }
+  }
+}
+
+.addMemberBox {
+  @include displayFlex($g: 20px);
+  transition: background-color 0.2s ease-in-out;
+  border-radius: 20px;
+  padding: 8px;
+
+  &:hover {
+    background-color: #888dec;
+    cursor: pointer;
+  }
+}
+
+.addMemberToChannelBox {
+  position: absolute;
+  top: 198px;
+  right: 62px;
+  width: 400px;
+  padding: 24px;
+  z-index: 3;
+  height: auto;
+  background-color: white;
+  border-radius: 35px;
+  border-top-right-radius: 0;
+  @include displayFlex($g: 20px);
+  flex-direction: column;
+  .posiotionHeader {
+    @include displayFlex($j: space-between, $a: flex-start);
+    width: 100%;
+    .headline {
+      @include displayFlex($a: flex-start, $g: 12px);
+      flex-direction: column;
+      p {
+        font-size: 24px;
+        font-weight: 600;
+      }
+      span {
+        font-size: 21px;
+        font-weight: 400;
+        color: #797ef3;
+      }
+    }
+  }
+}
+
+.addedUserBox {
+  display: flex;
+  flex-wrap: wrap;
+  z-index: 4;
+  height: auto;
+  width: 100%;
+  border: 1px solid #888dec;
+  background-color: white;
+  border-radius: 25px;
+  transition: 0.3s ease-in-out;
+  position: relative;
+
+  &:hover {
+    border: 1px solid #2c36f0;
+  }
+  .userPosition {
+    @include displayFlex($g: 8px);
+    padding: 4px;
+    padding-left: 8px;
+    padding-right: 8px;
+    background-color: #edeefe;
+    border-radius: 25px;
+    border-radius: 25px;
+    margin: 4px;
+    p {
+      font-size: 21px;
+    }
+    .avatarImg {
+      width: 32px;
+      height: 32px;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    .imgClose {
+      width: 12px;
+      object-fit: contain;
+      transition: 0.1s ease-in-out;
+      cursor: pointer;
+
+      &:hover {
+        scale: 1.1;
+        filter: brightness(0) saturate(100%) invert(8%) sepia(96%)
+          saturate(6339%) hue-rotate(1deg) brightness(102%) contrast(109%);
+      }
+    }
+  }
+
+  .inputfieldStyle {
+    width: 100%;
+    flex-grow: 1;
+    outline: none;
+    border: none;
+    border-radius: 25px;
+    height: 26px;
+    padding: 12px;
+    height: auto;
+    font-size: larger;
+  }
+}
+
+.showSearchedUsersWindow::-webkit-scrollbar {
+  display: none;
+}
+
+.showSearchedUsersWindow {
+  position: absolute;
+  top: 88%;
+  left: 20px;
+  z-index: 3;
+  padding: 4px;
+  border: 1px solid #888dec;
+  border-radius: 25px;
+  border-top-left-radius: 0;
+  background-color: white;
+  overflow: auto;
+  max-height: 210px;
+  width: fit-content;
+  max-width: 240px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  text-align: start;
+  .positionOfAllUsersBox {
+    @include displayFlex($a: flex-start);
+    flex-direction: column;
+    overflow: auto;
+    width: 100%;
+    span {
+      font-size: 20px;
+      font-weight: 400;
+      padding: 6px;
+    }
+    .userBox {
+      @include displayFlex($g: 12px);
+      padding: 6px;
+      cursor: pointer;
+      p {
+        font-size: 21px;
+      }
+      &:hover {
+        background-color: #edeefe;
+        border-radius: 25px;
+      }
+
+      .positionImgsBox {
+        @include displayFlex($a: flex-end);
+
+        .addAvatarImg {
+          width: 40px;
+          height: 40px;
+          object-fit: cover;
+          border-radius: 50%;
+        }
+
+        .onlineIcon {
+          width: 12px;
+          height: 12px;
+          margin-left: -10px;
+        }
+      }
+    }
+  }
+}
+
+.positionCreateBtn {
+  width: 100%;
+  @include displayFlex($j: flex-end);
+}
+
+.furterBtnClass {
+  width: 120px;
+  height: 48px;
+  background-color: white;
+  border: 1px solid #888dec;
+  border-radius: 25px;
+  font-size: larger;
+  color: #444df2;
+  transition: 0.3s ease-in-out;
+  &:hover {
+    background-color: #444df2;
+    color: white;
+    cursor: pointer;
+  }
+}
+
+.disabledBtn {
+  background-color: #22222242;
+  border: none;
+  font-size: larger;
+  color: #fff;
+  width: 120px;
+  height: 48px;
+  border-radius: 25px;
+  font-size: larger;
+  transition: 0.3s ease-in-out;
+}
+
+/*------------- RESPONSIVE -------------*/
+
+@media screen and (max-width: $RESPONSIVE_THRESHOLD_MOBILE) {
+  .whiteBox {
+    top: 140px;
+    right: 20px;
+    width: 250px;
+    .posiotionHeader {
+      font-size: 21px;
+    }
+  }
+
+  .addMemberToChannelBox {
+    position: absolute;
+    top: 140px;
+    right: 20px;
+    width: 230px;
+    .posiotionHeader {
+      .headline {
+        p {
+          font-size: 21px;
+        }
+        span {
+          font-size: 18px;
+        }
+      }
+    }
+  }
+
+  .showSearchedUsersWindow {
+    position: absolute;
+    top: 88%;
+    right: 0px;
+    max-height: 210px;
+    width: 200px;
+    .positionOfAllUsersBox {
+      span {
+        font-size: 18px;
+      }
+      .userBox {
+        p {
+          font-size: 18px;
+          font-style: 600;
+        }
+        .positionImgsBox {
+          .addAvatarImg {
+            width: 32px;
+            height: 32px;
+          }
+          .onlineIcon {
+            width: 9px;
+            height: 9px;
+            margin-left: -8px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-height: 600px) {
+  .positionOfAllUsersInBox {
+    max-height: 250px;
+  }
+}
+
+@media screen and (max-height: 500px) {
+  .positionOfAllUsersInBox {
+    max-height: 170px;
+  }
+}

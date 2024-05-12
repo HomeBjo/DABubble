@@ -1,0 +1,163 @@
+<div class="menu" (click)="closeMenu()">
+  <div class="whiteBox" (click)="preventCloseWhiteBox($event)">
+    @for (channel of getChannelName(currentChannel); track channel) {
+    <div class="headerBox">
+      <div class="headline">
+        <img src="./assets/img/hashtag.svg" alt="" />
+        <p>{{ channel.name }}</p>
+      </div>
+      <div class="closeBtn" (click)="closeMenu()">
+        <img src="./assets/img/closeIcon.svg" alt="" />
+      </div>
+    </div>
+    }
+    <div class="contentChannel">
+      @for (channel of getChannelName(currentChannel); track channel) {
+      <div class="contentHeadline">
+        <p>{{ "channel-informations.header" | translate }}</p>
+        @if (!openEditNameInput) {
+        <!--check if user is creator-->
+        @if(checkCreator(currentChannel)){
+        <app-small-btn
+          [imgSrc]="'pencil.svg'"
+          [imgSize]="'18px'"
+          [btnSize]="'32px'"
+          [btnBgHoverColor]="'#edeefe'"
+          (click)="editChannelName($event)"
+        ></app-small-btn>
+        } @else {
+        <img class="disableEdit" src="./assets/img/pencil.svg" alt="" />
+        } } @else {
+        <app-small-btn
+          [imgSrc]="'save.svg'"
+          [imgSize]="'18px'"
+          [btnSize]="'32px'"
+          [btnBgHoverColor]="'#edeefe'"
+          (click)="saveEditChannelName($event)"
+        ></app-small-btn>
+        }
+      </div>
+      @if (!openEditNameInput) {
+      <div class="channelName">
+        <img src="./assets/img/hashtag.svg" alt="" />
+        <p>{{ channel.name }}</p>
+      </div>
+      } @else {
+      <div class="channelName">
+        <img src="./assets/img/hashtag.svg" alt="" />
+        <input type="text" [(ngModel)]="nameValue" class="inputName" />
+      </div>
+      } }
+    </div>
+    <div class="contentChannel">
+      @for (channel of getChannelName(currentChannel); track channel) {
+
+      <div class="contentHeadline">
+        <p>{{ "channel-informations.channelInfo" | translate }}</p>
+        @if (!openEditNameDescription) {
+        <!--check if user is creator-->
+        @if(checkCreator(currentChannel)){
+        <app-small-btn
+          [imgSrc]="'pencil.svg'"
+          [imgSize]="'18px'"
+          [btnSize]="'32px'"
+          [btnBgHoverColor]="'#edeefe'"
+          (click)="editChannelDescription($event)"
+        ></app-small-btn>
+        } @else {
+        <img class="disableEdit" src="./assets/img/pencil.svg" alt="" />
+        } } @else {
+        <app-small-btn
+          [imgSrc]="'save.svg'"
+          [imgSize]="'18px'"
+          [btnSize]="'32px'"
+          [btnBgHoverColor]="'#edeefe'"
+          (click)="saveEditChannelDescription($event)"
+        ></app-small-btn>
+        }
+      </div>
+      @if (!openEditNameDescription) {
+      <div class="channelDescription">
+        @if (channel.description !== "") {
+        <p>{{ channel.description }}</p>
+        } @else {
+        <p>{{ "channel-informations.channelInfo2" | translate }}</p>
+        }
+      </div>
+      } @else {
+      <div class="channelName">
+        <textarea
+          cols="30"
+          rows="10"
+          [(ngModel)]="descriptionValue"
+          class="textareaDescription"
+        ></textarea>
+      </div>
+      }
+      <div class="line"></div>
+      <div class="contentHeadline">
+        <p>{{ "channel-informations.channelMadeBy" | translate }}</p>
+      </div>
+      <div class="channelCreator">
+        @if(channel.creator == "Admin") {
+        <p class="creatorName">Admin</p>
+        } @else { @for (user of getChatUsers(channel.creator); track user) {
+        <p class="creatorName">{{ user.firstName }} {{ user.lastName }}</p>
+        } } @if(!checkCreator(currentChannel)){
+        <p class="warningPTag">
+          {{ "channel-informations.channelErrorText" | translate }}
+        </p>
+        }
+      </div>
+      }
+    </div>
+    <div
+      class="contentChannelMembers"
+      [ngStyle]="{
+        display: viewWidth >= RESPONSIVE_THRESHOLD_MOBILE ? 'none' : ''
+      }"
+    >
+      <div class="contentHeadline">
+        <p>{{ "channel-informations.members" | translate }}</p>
+      </div>
+      <div class="allUsers">
+        @for(allMembers of getAllChannelMembers(currentChannel)[0].addedUser;
+        track allMembers) { @for (user of getChatUsers(allMembers); track user)
+        {
+        <div class="user" (click)="openUserWindow(user)">
+          <div class="imgBox">
+            <img src="{{ user.avatar }}" class="userImg" />
+            <img
+              src="./assets/img/{{
+                user.status ? 'onlineRing.svg' : 'offlineRing.svg'
+              }}"
+              class="onlineIcon"
+            />
+          </div>
+          <p>
+            {{ user.firstName }} {{ user.lastName }} @if (user.id ==
+            userService.getCurrentUserId()) { (You) }
+          </p>
+        </div>
+        }}
+      </div>
+    </div>
+    <app-open-send-prv-message-window
+      [ngClass]="{
+        dBlock: openUserWindowBoolean,
+        dNone: !openUserWindowBoolean
+      }"
+      [user]="user"
+      [openUserWindowBoolean]="openUserWindowBoolean"
+      (closeUserWondow)="changeOpenUserWindowBoolean($event)"
+    ></app-open-send-prv-message-window>
+    <div class="leaveChannel">
+      <button
+        [disabled]="openEditNameInput || openEditNameDescription"
+        (click)="leaveChannel(currentChannel, $event)"
+      >
+        {{ "channel-informations.leave" | translate }}
+      </button>
+    </div>
+  </div>
+</div>

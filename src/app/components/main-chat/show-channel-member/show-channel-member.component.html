@@ -1,0 +1,130 @@
+<section>
+  <div class="darkBackground" (click)="closeChannelMemberWindow()"></div>
+  @if (!toggleBoolean.closeChannelMemberWindow) {
+  <div
+    class="whiteBox"
+    [ngStyle]="{
+      right: isSecondaryChatOpen ? '620px' : ''
+    }"
+  >
+    <div class="posiotionHeader">
+      <p>{{ "show-channel-member.header" | translate }}</p>
+      <app-small-btn
+        [imgSrc]="'closeIcon.svg'"
+        [imgSize]="'16px'"
+        [btnSize]="'32px'"
+        [btnBgHoverColor]="'#edeefe'"
+        (click)="closeChannelMemberWindow()"
+        style="margin-right: -12px"
+      ></app-small-btn>
+    </div>
+    <div class="positionOfAllUsersInBox">
+      @for(user of getFiltertUsers; track user){
+      <div class="user" (click)="openUserWindow(user)">
+        <div class="positionImgs">
+          <img src="{{ user.avatar }}" class="avatarImg" />
+          <img
+            src="./assets/img/{{
+              user.status ? 'onlineRing.svg' : 'offlineRing.svg'
+            }}"
+            class="onlineIcon"
+          />
+        </div>
+        <h1>{{ user.firstName }} {{ user.lastName }}</h1>
+      </div>
+      }
+    </div>
+    <div class="addMemberBox" (click)="toggleBoolean.openAddMemberWindow(true)">
+      <img src="./assets/img/addPerson.svg" />
+      <p>{{ "show-channel-member.addMember" | translate }}</p>
+    </div>
+  </div>
+  } @else {
+  <div
+    class="addMemberToChannelBox"
+    [ngStyle]="{
+      right: isSecondaryChatOpen ? '580px' : ''
+    }"
+  >
+    <div class="posiotionHeader">
+      <div class="headline">
+        <p>{{ "show-channel-member.addMember" | translate }}</p>
+        @if (getChannelName(currentChannel)) {
+        <span># {{ getCurrentChannelName }}</span>
+        }
+      </div>
+      <app-small-btn
+        [imgSrc]="'closeIcon.svg'"
+        [imgSize]="'16px'"
+        [btnSize]="'32px'"
+        [btnBgHoverColor]="'#edeefe'"
+        (click)="closeChannelMemberWindow()"
+        style="margin-right: -12px"
+      ></app-small-btn>
+    </div>
+    <div class="addedUserBox">
+      <div
+        class="userPosition"
+        *ngFor="let user of getSelectedUsers; let i = index"
+      >
+        <img src="{{ user.avatar }}" class="avatarImg" />
+        <p>{{ user.firstName }} {{ user.lastName }}</p>
+        <img
+          src="./assets/img/closeIcon.svg"
+          class="imgClose"
+          (click)="spliceCurrentUser(i)"
+        />
+      </div>
+      <div
+        class="showSearchedUsersWindow"
+        [ngClass]="{ dBlock: showExistenUsers, dNone: !showExistenUsers }"
+      >
+        <div class="positionOfAllUsersBox">
+          @if(getSearchedUser.length <= 0) {
+          <span>{{ "show-channel-member.result" | translate }}</span> }
+          @for(user of getSearchedUser; track user){
+          @if(!isUserAlreadySelectet(user)) {
+          <div class="userBox" (click)="chooseUser(user)">
+            <div class="positionImgsBox">
+              <img src="{{ user.avatar }}" class="addAvatarImg" />
+              <img
+                src="./assets/img/{{
+                  user.status ? 'onlineRing.svg' : 'offlineRing.svg'
+                }}"
+                class="onlineIcon"
+              />
+            </div>
+            <p>{{ user.firstName }} {{ user.lastName }}</p>
+          </div>
+          } }
+        </div>
+      </div>
+      <input
+        type="text"
+        class="inputfieldStyle"
+        [(ngModel)]="userName"
+        (keyup)="filterUsers(userName)"
+      />
+    </div>
+    <div class="positionCreateBtn">
+      <button
+        class="furterBtnClass"
+        [ngClass]="{
+          furterBtnClass: getSelectedUsers.length > 0,
+          disabledBtn: getSelectedUsers.length === 0
+        }"
+        [disabled]="getSelectedUsers.length === 0"
+        (click)="addUserToChannel()"
+      >
+        {{ "show-channel-member.add" | translate }}
+      </button>
+    </div>
+  </div>
+  }
+</section>
+<app-open-send-prv-message-window
+  [ngClass]="{ dBlock: openUserWindowBoolean, dNone: !openUserWindowBoolean }"
+  [user]="user"
+  [openUserWindowBoolean]="openUserWindowBoolean"
+  (closeUserWondow)="changeOpenUserWindowBoolean($event)"
+></app-open-send-prv-message-window>

@@ -1,0 +1,91 @@
+<section
+  (mouseleave)="this.isEmojiPickerVisible = false"
+  [ngStyle]="{
+    'flex-direction':
+      user.id === userService.getCurrentUserId() ? 'row-reverse' : 'row'
+  }"
+>
+  <app-small-btn
+    [imgSrc]="'add-reaction.svg'"
+    [imgSize]="viewWidth >= RESPONSIVE_THRESHOLD_MOBILE ? '24px' : '21px'"
+    [btnSize]="viewWidth >= RESPONSIVE_THRESHOLD_MOBILE ? '40px' : '34px'"
+    [btnBgColor]="'#fff'"
+    [btnBgHoverColor]="'#edeefe'"
+    (click)="toggleEmojiPicker()"
+  >
+  </app-small-btn>
+  @if(isEmojiPickerVisible) {
+  <app-emoji-picker
+    [ngClass]="{
+      emojiPickerFirstMsg: secondaryChatFirstMsg,
+      emojiPickerAnswerMsg: !secondaryChatFirstMsg
+    }"
+    [output]="'id'"
+    (emojiOutputEmitter)="emojiOutputEmitter($event, chat.id)"
+    (emojiVisibleEmitter)="emojiVisibleEmitter($event)"
+    [ngStyle]="{
+      left: user.id === userService.getCurrentUserId() ? 'unset' : '',
+      right: user.id === userService.getCurrentUserId() ? '20px' : '',
+      
+    }"
+  ></app-emoji-picker>
+  }
+  <div class="emojiSection">
+    @for (reaction of getReaction(chat.id); track reaction; let i = $index) {
+    @if (reaction.id) {
+    <div
+      class="emoji"
+      (click)="toggleEmoji(reaction.id)"
+      (mousemove)="openDialog(reaction.id, $event)"
+      (mouseleave)="closeDialog()"
+    >
+      @if (reaction.icon === "okay" || reaction.icon === "clap-hands") {
+      <img src="./assets/img/{{ reaction.icon }}.svg" />
+      } @else {
+      <ngx-emoji
+        emoji="{{ reaction.icon }}"
+        [size]="viewWidth <= RESPONSIVE_THRESHOLD_MOBILE ? 20 : 24"
+      ></ngx-emoji>
+
+      }
+      <span>{{ reaction.userId.length }}</span>
+    </div>
+    } }
+  </div>
+
+  <!-- DIALOG-->
+
+  @if (reactionDialogId != '') { @for (reaction of
+  getReactionDocId(reactionDialogId); track reaction) {
+  <div
+    class="dialog"
+    [style.left.px]="dialogX"
+    [style.top.px]="dialogY"
+    (click)="reactionDialogId = ''"
+  >
+    <div class="icon">
+      @if (reaction.icon === "okay" || reaction.icon === "clap-hands") {
+      <img src="./assets/img/{{ reaction.icon }}.svg" />
+      } @else {
+      <ngx-emoji emoji="{{ reaction.icon }}"></ngx-emoji>
+      }
+    </div>
+    <div class="name">
+      @for (reactionUId of getReactionDocId(reactionDialogId)[0].userId; track
+      reactionUId;) {
+      <div class="user">
+        {{ getUserId(reactionUId)[0].firstName }}
+        {{ getUserId(reactionUId)[0].lastName }}
+        @if (getUserId(reactionUId)[0].id == userService.getCurrentUserId()) {
+        (You)}
+      </div>
+      }
+    </div>
+    @if (getReactionDocId(reactionDialogId)[0].userId.length > 1) {
+    <p>{{ "reaction-emojis.react" | translate }}</p>
+    } @else {
+    <p>{{ "reaction-emojis.react2" | translate }}</p>
+    }
+  </div>
+  } }
+</section>

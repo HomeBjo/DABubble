@@ -1,0 +1,66 @@
+<section>
+  <div class="chat">
+    <div class="header">
+      <div class="headline">
+        <p>{{ "secondary-chat.thread" | translate }}</p>
+        @for (channel of getChannelName(); track channel) {
+        <span># {{ channel.name }}</span>
+        }
+      </div>
+      <div class="close" (click)="closeSecondaryChat()">
+        <img src="./assets/img/closeIcon.svg" alt="" />
+      </div>
+    </div>
+    <div class="content" #messageBody>
+      @for (chat of getSingleChat(this.chatService.isSecondaryChatId); track
+      chat; let i = $index) {
+      <div>
+        @for (user of getChatUsers(chat.userId); track user) {
+        <app-single-chat
+          [user]="user"
+          [chat]="chat"
+          [index]="i"
+          [currentChat]="chat.id"
+          [showAnswer]="false"
+          [openOnSecondaryChat]="true"
+          [secondaryChatFirstMsg]="true"
+          [viewWidth]="viewWidth"
+        ></app-single-chat>
+        }
+      </div>
+      <div class="spacer">
+        <p>
+          {{ displayCountChatAnswer(chat.id) }}
+          {{ "secondary-chat.answer" | translate }}
+        </p>
+        <div class="line"></div>
+      </div>
+      }
+      <div class="messages">
+        @for (chat of getChatAnswers(this.chatService.isSecondaryChatId); track
+        chat; let i = $index) {
+        <div>
+          @for (user of getChatUsers(chat.userId); track user) {
+          <app-single-chat
+            [user]="user"
+            [chat]="chat"
+            [index]="i"
+            [currentChat]="chat.id"
+            [showAnswer]="false"
+            [openOnSecondaryChat]="true"
+            [viewWidth]="viewWidth"
+          ></app-single-chat>
+          }
+        </div>
+        }
+      </div>
+    </div>
+  </div>
+  <div class="answer">
+    <app-chat-msg-box
+      [currentChannel]="currentChannel"
+      (newMsgEmitter)="editMsgEmitter($event)"
+      [target]="'chat-answers'"
+    ></app-chat-msg-box>
+  </div>
+</section>

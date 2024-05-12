@@ -1,0 +1,308 @@
+@import "../../../../../styles.scss";
+
+.headerContainer {
+  display: flex;
+  width: 97vw;
+  justify-content: space-between;
+  height: 228px;
+}
+
+.header {
+  display: flex;
+  background-color: #eceefe;
+}
+
+.registerContainer {
+  position: absolute;
+  top: 90px;
+  right: 71px;
+
+  > div {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    > span {
+      font-weight: 400;
+      font-size: 18px;
+    }
+  }
+}
+
+.createAccountContainer {
+  display: flex;
+  justify-content: end;
+}
+
+.createAccoun {
+  text-align: end;
+  font-family: Figtree, sans-serif, Nunito;
+  color: #797ef3;
+  cursor: pointer;
+  padding-right: 8px;
+  padding: 0px;
+  padding: 4px 12px 4px 12px;
+  border-radius: 100px;
+  border: 1px solid #eceefe;
+  font-weight: 400;
+  font-size: 18px;
+  margin-right: -13px;
+  &:hover {
+    font-weight: 500;
+    background-color: #eceefe;
+    color: #444df2;
+    border: 1px solid #444df2;
+  }
+}
+
+.switchLanguage {
+  position: absolute;
+  right: 26px;
+  top: 18px;
+}
+// animation start ------------------------------------------------------------>
+
+.background {
+  z-index: 2;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: linear-gradient(1.46deg, #313ae6 1.22%, #797ef3 98.76%);
+  width: 100%;
+  height: 100%;
+  transition: 1s;
+  overflow-x: hidden !important;
+  overflow-y: hidden !important;
+}
+
+.background.d-none {
+  display: none;
+}
+
+.opacity {
+  opacity: 0;
+}
+
+.logo {
+  position: absolute;
+  top: 50%;
+  left: 60%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  animation: logoAnimation-slide 0.5s ease-in forwards 1s;
+  background-size: contain;
+  gap: 11px;
+  z-index: 999;
+}
+
+@keyframes logoAnimation-slide {
+  0% {
+    top: 50%;
+    left: 60%;
+    transform: translate(-50%, -50%);
+  }
+  100% {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+//animation to end Position ------------------------------------------------------------>
+
+.logoEndPosition {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: animationToEndPosiotion 0.5s ease-in forwards 1s;
+  background-size: contain;
+  z-index: 999;
+}
+
+.imgEndPosiotion {
+  animation: imgSize 0.5s ease-in forwards 1s;
+}
+
+@keyframes imgSize {
+  0% {
+    width: 187px;
+    height: 184px;
+  }
+  90% {
+    width: 167px;
+    height: 154px;
+  }
+  100% {
+    width: 70px;
+    height: 70px;
+  }
+}
+
+@keyframes animationToEndPosiotion {
+  0% {
+    top: 50%;
+    left: 50%;
+    width: 240px;
+    transform: translate(-50%, -50%);
+  }
+  100% {
+    top: 125px;
+    left: 195px;
+    width: 240px;
+    gap: 11px;
+    height: 70px;
+  }
+}
+
+.logo-text {
+  top: 50%;
+  left: 50%;
+  overflow: hidden;
+  white-space: nowrap;
+  transition: clip-path 0.5s ease-in-out;
+  animation: textAnimation 0.5s ease-in forwards 1.1s;
+  z-index: 900;
+  clip-path: inset(0 100% 0 0);
+}
+
+@keyframes textAnimation {
+  0% {
+    clip-path: inset(0 100% 0 0);
+  }
+  100% {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes spanFontSizeChange {
+  0% {
+    font-size: 64px;
+  }
+  50% {
+    font-size: 50px;
+  }
+  100% {
+    font-size: 32px;
+    color: black;
+  }
+}
+
+.logo-text-span {
+  animation: spanFontSizeChange 0.7s ease-in forwards 3.25s;
+  font-size: 64px;
+  font-weight: 800;
+  color: white;
+}
+
+// Final Class Contains ------------------------------------------------------------>
+
+.final-span-position {
+  font-size: 32px;
+  color: black;
+  font-weight: 800;
+  animation: none;
+}
+
+.final-img-position {
+  width: 70px;
+  height: 70px;
+}
+
+.final-div-position {
+  position: absolute;
+  top: 125px;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  background-size: contain;
+  z-index: 999;
+  gap: 11px;
+  left: 193.5px;
+}
+
+@media (max-width: 570px) {
+  .headerContainer {
+    height: 95px;
+  }
+  .final-div-position {
+    left: 50%;
+    top: 50px;
+  }
+  .registerContainer {
+    display: none;
+    > div {
+      align-items: center;
+    }
+  }
+  .createAccoun {
+    margin-right: 0;
+  }
+  .logoEndPosition {
+    animation: none;
+    animation: animationToEndPosiotionMobile 0.5s ease-in forwards 1s;
+  }
+
+  @keyframes animationToEndPosiotionMobile {
+    0% {
+      top: 50%;
+      left: 50%;
+      width: 70px;
+    }
+    100% {
+      top: 50px;
+      left: 50%;
+      width: 237.55px;
+      gap: 11px;
+    }
+  }
+  .mobileImg {
+    height: 90px;
+  }
+  .logo-text-span {
+    font-size: 34px;
+    font-weight: 800;
+    color: white;
+    animation: none;
+    animation: spanFontSizeChangeMobile 0.7s ease-in forwards 3.25s;
+  }
+  @keyframes spanFontSizeChangeMobile {
+    0% {
+      font-size: 34px;
+    }
+    50% {
+      font-size: 32px;
+    }
+    100% {
+      font-size: 32px;
+      color: black;
+    }
+  }
+
+  .imgEndPosiotion {
+    animation: none;
+    animation: imgSizeMobile 0.5s ease-in forwards 1s;
+  }
+
+  @keyframes imgSizeMobile {
+    0% {
+      width: 90px;
+      height: 90px;
+    }
+    90% {
+      width: 70px;
+      height: 70px;
+    }
+    100% {
+      width: 70px;
+      height: 70px;
+    }
+  }
+}
+
+@media screen and (max-width: 570px) {
+  .switchLanguage {
+    right: 10px;
+    top: 8px;
+  }
+}

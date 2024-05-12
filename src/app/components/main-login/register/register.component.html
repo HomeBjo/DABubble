@@ -1,0 +1,117 @@
+<div class="registerSektion">
+  <app-start-header [display]="'none'"></app-start-header>
+  <div class="registerContainer">
+    <div class="registerTop">
+      <div routerLink="/login" class="registerBackImg">
+        <app-small-btn
+          [imgSrc]="'login/arrow-back.svg'"
+          [imgSize]="'24px'"
+          [btnSize]="'48px'"
+          [btnBgHoverColor]="'#edeefe'"
+          (click)="resetValues()"
+        >
+        </app-small-btn>
+      </div>
+      <span> {{ 'createAccount.header' | translate }}</span>
+    </div>
+    <div class="registerInfoText">
+      <span
+        >{{ 'createAccount.infoText' | translate }}</span
+      >
+    </div>
+    <form
+      (ngSubmit)="onSubmit(contactForm)"
+      #contactForm="ngForm"
+      class="contactForm"
+    >
+      <div class="inputContainer">
+        <img class="iconP" src="./assets/img/login/person-filled.png" alt="" />
+        <input
+          class="inputField"
+          #nameField="ngModel"
+          [(ngModel)]="loginService.name"
+          id="name"
+          name="name"
+          type="text"
+          placeholder="{{ 'createAccount.inputField' | translate }}"
+          required
+          [ngClass]="{ aktivInput: nameField.valid && nameField.touched }"
+        />
+        @if (!nameField.valid && nameField.touched) {
+        <p class="error">{{ 'createAccount.errorText' | translate }}</p>
+        }
+      </div>
+      <div class="inputContainer">
+        <img class="iconP" src="./assets/img/login/mail.png" alt="" />
+        <input
+          class="inputField"
+          #emailField="ngModel"
+          [(ngModel)]="loginService.email"
+          id="email"
+          name="email"
+          type="email"
+          placeholder="{{ 'createAccount.inputField2' | translate }}"
+          required
+          [ngClass]="{ aktivInput: emailField.valid && emailField.touched }"
+          pattern="[^@]+@[^.]+\..+"
+        />
+        @if (!emailField.valid && emailField.touched) {
+        <p class="error">{{ 'createAccount.errorText2' | translate }}</p>
+        }
+      </div>
+      <div class="inputContainer">
+        <img class="iconP" src="./assets/img/login/lock.png" alt="" />
+        <input 
+          class="inputField"
+          #passwordField="ngModel"
+          minlength="6"
+          maxlength="16" 
+          [(ngModel)]="loginService.password"
+          name="password"
+          placeholder="{{ 'createAccount.inputField3' | translate }}"
+          [type]="loginService.passwordFieldType"
+          id="message"
+          required
+          [ngClass]="{
+            aktivInput: passwordField.valid && passwordField.touched
+          }"
+          cols="30"
+          rows="10"
+        />
+        <img class="passwordEye" (click)="loginService.togglePasswordVisibility()" [src]="loginService.passwordIcon" alt="Toggle visibility">
+        @if (!passwordField.valid && passwordField.touched) {
+        <p class="error">
+          {{ 'createAccount.errorText3' | translate }}
+        </p>
+        }
+      </div>
+
+      <div class="checkBox">
+        <div>
+          <img
+            [src]="currentImage"
+            (click)="toggleCheckbox()"
+            (mouseover)="onMouseOver()"
+            (mouseout)="onMouseOut()"
+            alt=""
+          />
+        </div>
+        <span
+          >{{ 'createAccount.midText' | translate }}
+          <span class="fontColor" routerLink="/privacy-policy"
+            >{{ 'createAccount.midText2' | translate }} </span
+          >{{ 'createAccount.midText3' | translate }}</span
+        >
+      </div>
+      <div class="registerBottom">
+        <button
+          [ngClass]="{ aktivButton: isChecked && contactForm.valid }"
+          [disabled]="!isChecked || !contactForm.valid"
+        >
+        {{ 'createAccount.Btn' | translate }}
+        </button>
+      </div>
+    </form>
+  </div>
+  <app-footer></app-footer>
+</div>

@@ -1,0 +1,217 @@
+@import "../../../../styles.scss";
+
+header {
+  height: 100%;
+  @include displayFlex($j: space-between);
+}
+
+.logo {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  max-width: fit-content;
+  transition: 0.3 linear;
+  cursor: pointer;
+  img {
+    &:first-child {
+      margin: 0 15px 0 20px;
+    }
+    &:nth-child(2) {
+      width: 60px;
+      height: 60px;
+      background-color: black;
+      border-radius: 100%;
+      margin-right: 12px;
+    }
+  }
+  p {
+    font-size: 24px;
+    font-weight: 700;
+  }
+  &:hover {
+    scale: 1.025;
+  }
+}
+
+.leftSide {
+  @include displayFlex($j: start, $g: 20px);
+  width: 20vw;
+  .homeIcon {
+    width: 242px;
+    height: 70px;
+    margin-left: 20px;
+  }
+}
+
+.middleSide {
+  width: 40vw;
+}
+
+.rightSide {
+  width: 20vw;
+  @include displayFlex($j: end, $g: 20px);
+  p {
+    font-size: 28px;
+    font-weight: 700;
+  }
+  .img {
+    margin-right: 20px;
+    cursor: pointer;
+    .profileImg {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+    .onlineIcon {
+      margin-left: -20px;
+    }
+  }
+  .positionPlanet {
+    margin-left: -24px;
+    margin-right: 12px;
+    margin-top: -54px;
+  }
+}
+
+.suggestionBox::-webkit-scrollbar {
+  display: none;
+}
+
+.menu {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 5;
+}
+
+.whiteBox {
+  background-color: white;
+  @include displayFlex($g: 20px);
+  flex-direction: column;
+  width: 220px;
+  height: 160px;
+  border-top-left-radius: 40px;
+  border-bottom-left-radius: 40px;
+  border-bottom-right-radius: 40px;
+  position: absolute;
+  top: 110px;
+  right: 20px;
+  p {
+    font-size: 22px;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    padding: 8px;
+    &:hover {
+      width: 62%;
+      background-color: #edeefe;
+      border-radius: 15px;
+      color: #444df2;
+    }
+  }
+}
+
+.arrowLeft {
+  display: none;
+}
+
+/*------------- RESPONSIVE -------------*/
+
+@media screen and (max-width: $RESPONSIVE_THRESHOLD) {
+  .middleSide {
+    display: none;
+  }
+
+  .rightSide,
+  .leftSide {
+    width: 50vw;
+    margin-left: 0;
+  }
+
+  .profileImg {
+    margin: 0;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .rightSide {
+    @include displayFlex($j: end, $g: 20px);
+    p {
+      display: none;
+    }
+    .img {
+      margin-right: 20px;
+    }
+  }
+
+  .whiteBox {
+    @include displayFlex();
+    width: 178px;
+    height: 122px;
+  }
+}
+
+@media screen and (max-width: $RESPONSIVE_THRESHOLD_MOBILE) {
+  .whiteBox {
+    top: unset;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 186px;
+    gap: 16px;
+    border-radius: 40px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  .rightSide {
+    .img {
+      .profileImg {
+        width: 50px;
+        height: 50px;
+      }
+      .onlineIcon {
+        margin-left: -12px;
+      }
+    }
+    .positionPlanet {
+      margin-left: -38px;
+      margin-right: 6px;
+      margin-top: -34px;
+    }
+  }
+
+  .leftSide {
+    @include displayFlex($j: start, $g: 8px);
+    .homeIcon {
+      width: 162px;
+      height: 45px;
+    }
+  }
+
+  .logo {
+    img {
+      &:first-child {
+        margin: 0 12px 0 16px;
+      }
+      &:nth-child(2) {
+        width: 50px;
+        height: 50px;
+        background-color: black;
+        border-radius: 100%;
+        margin-right: 12px;
+      }
+    }
+    p {
+      font-size: 20px;
+      font-weight: 700;
+    }
+    &:hover {
+      scale: 1.025;
+    }
+  }
+}

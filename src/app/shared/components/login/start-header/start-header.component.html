@@ -1,0 +1,55 @@
+<div
+  class="background"
+  [class.opacity]="animationBackground"
+  [class.d-none]="d_none"
+></div>
+<div class="headerContainer">
+  <div class="header">
+    <div
+      [class.logo]="animationStart && !this.animationsBlock"
+      [class.logoEndPosition]="animationToEndPosiotion && !this.animationsBlock"
+      [class.final-div-position]="loginService.getFinalclass()"
+    >
+      <img
+        class="mobileImg"
+        [class.final-img-position]="loginService.getFinalclass()"
+        [class.imgEndPosiotion]="
+          animationToEndPosiotion && !this.animationsBlock
+        "
+        src="./assets/img/login/logo-animation.svg"
+      />
+      <div
+        class="logo-text"
+        [class.logo-text]="animationLogo"
+        [class.logo-text]="animationStart && !this.animationsBlock"
+      >
+        <span
+          [class.logo-text-span]="animationStart && !this.animationsBlock"
+          [class.final-span-position]="loginService.getFinalclass()"
+          >DABubble</span
+        >
+      </div>
+    </div>
+  </div>
+
+  <div [style.display]="display" class="registerContainer">
+    <div>
+      <span>{{ "start-header.new" | translate }}</span>
+      <div class="createAccountContainer">
+        <span routerLink="/register" class="createAccoun">{{
+          "start-header.create" | translate
+        }}</span>
+      </div>
+    </div>
+  </div>
+  <app-small-btn
+    class="switchLanguage"
+    [imgSrc]="'language.svg'"
+    [imgSize]="'32px'"
+    [btnSize]="'40px'"
+    [imgSize]="viewWidth > 570 ? '24px' : '17px'"
+    [btnSize]="viewWidth > 570 ? '36px' : '25px'"
+    [btnBgHoverColor]="'#edeefe'"
+    (click)="LanguageService.switchLanguage()"
+  ></app-small-btn>
+</div>

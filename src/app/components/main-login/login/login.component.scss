@@ -1,0 +1,249 @@
+@import "../../../shared/components/login/mixins/mixin.scss";
+.startIntroScrollProtect {
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+.loginSektion {
+  @include SektionBody;
+}
+.loginContainer {
+  @include Card;
+}
+.loginTop {
+  @include topText;
+}
+
+.loginBackImg {
+  cursor: pointer;
+}
+.loginInfoText {
+  @include InfoText;
+}
+.inputContainer {
+  position: relative;
+  margin-bottom: 32px;
+}
+.iconP {
+  position: absolute;
+  top: 18px;
+  left: 20px;
+}
+.inputField {
+  @include inputStyle;
+}
+.error {
+  @include errorStyle;
+}
+.contactForm {
+  width: 90%;
+}
+.passwordContainer {
+  text-align: center;
+  color: rgba(121, 126, 243, 1);
+  font-size: 18px;
+  margin-bottom: 32px;
+  margin-top: 40px;
+  > span {
+    font-family: Figtree, sans-serif, Nunito;
+    color: #797ef3;
+    &:hover {
+      cursor: pointer;
+      font-weight: 500;
+      background-color: #eceefe;
+      padding: 12px 16px 12px 16px;
+      border-radius: 100px;
+      color: #444df2;
+    }
+  }
+}
+.separatorContainer {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  gap: 10px;
+  font-size: 18px;
+  margin-bottom: 32px;
+  > div {
+    border: 1px solid #adb0d9;
+    width: 42%;
+    height: 0px;
+    display: flex;
+    justify-content: center;
+  }
+}
+.googleLogingContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #ffff;
+  font-size: 18px;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+  background: #eceefe;
+  height: 60px;
+  border-radius: 100px;
+  color: rgba(121, 126, 243, 1);
+  &:hover {
+    font-weight: 700;
+    border: 1px solid #444df2;
+    color: #444df2;
+    cursor: pointer;
+  }
+}
+
+.loginBottom {
+  display: flex;
+  justify-content: center;
+  margin-top: 32px;
+  gap: 30px;
+}
+
+button {
+  @include buttonGrey;
+}
+.aktivButton {
+  @include aktivButtonBlue;
+}
+.aktivInput {
+  border: 1px solid#686868;
+}
+.guestButton {
+  padding: 12px 25px;
+  color: #444df2;
+  background-color: #ffff;
+  border: 1px solid #444df2;
+  outline: none;
+  box-sizing: border-box;
+  transition: 0.2s;
+  border-radius: 25px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  &:hover {
+    background-color: #444df2;
+    color: #fff;
+    border: 1px solid #ffff;
+  }
+}
+.mobileRegisterContainer {
+  display: none;
+  > div {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+    > span {
+      font-weight: 400;
+      font-size: 18px;
+    }
+  }
+}
+.mobileCreateAccountContainer {
+  display: flex;
+  justify-content: end;
+}
+.mobileCreateAccoun {
+  font-family: Figtree, sans-serif, Nunito;
+  color: #797ef3;
+  cursor: pointer;
+  padding: 4px 12px 4px 12px;
+  border-radius: 100px;
+  border: 1px solid #eceefe;
+  font-weight: 400;
+  font-size: 18px;
+  &:hover {
+    font-weight: 500;
+    background-color: #eceefe;
+    color: #444df2;
+    border: 1px solid #444df2;
+  }
+}
+.passwordEye {
+  position: absolute;
+  top: 18px;
+  right: 25px;
+}
+@media (max-width: 570px) {
+  .loginTop {
+    margin-bottom: 0;
+    > span {
+      font-size: 32px;
+    }
+  }
+  .loginInfoText {
+    margin-bottom: 0;
+    > span {
+      font-size: 17px;
+    }
+  }
+  .loginContainer {
+    padding: 16px;
+    max-height: 552px;
+    padding-left: 18px;
+    padding-right: 18px;
+    gap: 12px;
+    max-width: 400px;
+  }
+  .contactForm {
+    width: 100%;
+  }
+  .inputContainer {
+    margin-bottom: 22px;
+  }
+  .inputField {
+    height: 52px;
+    font-size: 15px;
+  }
+  .iconP {
+    top: 15px;
+  }
+  .passwordContainer {
+    margin-bottom: 22px;
+    margin-top: 32px;
+    font-size: 17px;
+  }
+  .separatorContainer {
+    font-size: 17px;
+    margin-bottom: 22px;
+  }
+  .googleLogingContainer {
+    font-size: 17px;
+    height: 52px;
+    gap: 0;
+    margin-bottom: 22px;
+    > img {
+      height: 32px;
+    }
+  }
+  .loginBottom {
+    margin-top: 0px;
+    gap: 24px;
+    > button {
+      width: 118px;
+      height: 52px;
+      padding: 0;
+    }
+  }
+  .guestButton {
+    font-size: 17px;
+    white-space: nowrap;
+  }
+  .aktivButton {
+    font-size: 17px;
+  }
+  .mobileRegisterContainer {
+    display: flex;
+    background-color: #eceefe;
+    width: 100vw;
+    padding-top: 40px;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 380px) {
+  .loginContainer {
+    max-width: 306px;
+  }
+}

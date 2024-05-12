@@ -1,0 +1,57 @@
+<div class="avatarSektion">
+  <app-start-header [display]="'none'"></app-start-header>
+  <div class="avatarContainer">
+    <div class="avatarTop">
+      <div routerLink="/register" class="registerBackImg">
+        <app-small-btn
+          [imgSrc]="'login/arrow-back.svg'"
+          [imgSize]="'24px'"
+          [btnSize]="'48px'"
+          [btnBgHoverColor]="'#edeefe'"
+        >
+        </app-small-btn>
+      </div>
+      <span>{{ 'chooseAvatar.header' | translate }}</span>
+    </div>
+
+    <div class="viewAvatarContainer">
+      <img [src]="avatarSrc" alt="Avatar" />
+      <span>{{ loginService.firstName }} {{ loginService.lastName }}</span>
+    </div>
+    <div>
+      <input
+        type="file"
+        #fileInput
+        id="file"
+        style="display: none"
+        (change)="onFileChange($event)"
+        accept="image/*"
+      />
+    </div>
+    <div class="chooseAvatarContainer">
+      <div><span>{{ 'chooseAvatar.avatarInfo' | translate }}</span></div>
+      <div class="mobileImgContainer">
+        <img
+          (click)="chooseExistAvatar(i)"
+          *ngFor="let imageSrc of avatarImages; let i = index"
+          [src]="imageSrc"
+          alt=""
+        />
+      </div>
+    </div>
+
+    <div class="ownAvatarContainer">
+      <div>{{ 'chooseAvatar.ownAvatar' | translate }}</div>
+      <div>
+        <button class="BtnUpload" (click)="fileInput.click()">
+          {{ 'chooseAvatar.avatarBtn' | translate }}
+        </button>
+      </div>
+    </div>
+
+    <div class="avatarBottom">
+      <button class="hoverBtn" (click)="loginService.register()">{{ 'chooseAvatar.Btn' | translate }}</button>
+    </div>
+  </div>
+  <app-footer></app-footer>
+</div>

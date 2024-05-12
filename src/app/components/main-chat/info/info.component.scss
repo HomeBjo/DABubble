@@ -1,0 +1,70 @@
+@import "../../../../styles.scss";
+
+section {
+  padding: 32px 48px;
+}
+
+.headline {
+  font-size: 24px;
+  font-weight: 700;
+  padding-bottom: 12px;
+}
+
+p {
+  font-size: 20px;
+  font-weight: 400;
+}
+
+span {
+  color: #535af1;
+}
+
+.headlinePrvChat {
+  display: flex;
+  align-items: center;
+  padding-bottom: 12px;
+  max-width: fit-content;
+  .imgBoxPrvChat {
+    display: flex;
+    margin-right: 16px;
+    .imgUserPrvChat {
+      width: 56px;
+      height: 56px;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+  }
+  p {
+    font-size: 24px;
+    font-weight: 700;
+  }
+}
+
+/*------------- RESPONSIVE -------------*/
+
+@media screen and (max-width: $RESPONSIVE_THRESHOLD_MOBILE) {
+  section {
+    padding: 12px;
+  }
+
+  .headline {
+    font-size: 20px;
+  }
+
+  p {
+    font-size: 18px;
+  }
+
+  .headlinePrvChat {
+    .imgBoxPrvChat {
+      margin-right: 12px;
+      .imgUserPrvChat {
+        width: 50px;
+        height: 50px;
+      }
+    }
+    p {
+      font-size: 20px;
+    }
+  }
+}

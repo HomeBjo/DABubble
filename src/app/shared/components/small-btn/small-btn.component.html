@@ -1,0 +1,19 @@
+<div
+  class="smallBtn"
+  [ngStyle]="{
+    width: btnSize,
+    height: btnSize,
+    'background-color': btnBgColor,
+    '--btnBgHoverColor': btnBgHoverColor
+  }"
+>
+  <img
+    [ngStyle]="{
+      width: imgSize,
+      height: imgSize,
+      '--filter': imgFilter
+    }"
+    src="./assets/img/{{ imgSrc }}"
+    alt=""
+  />
+</div>

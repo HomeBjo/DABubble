@@ -1,0 +1,129 @@
+@import "../../../styles.scss";
+
+app-header {
+  display: block;
+  height: 110px;
+  background-color: #edeefe;
+}
+
+.content {
+  display: flex;
+}
+
+app-sidebar,
+app-main-chat,
+app-secondary-chat {
+  padding: 0 12px 12px 12px;
+  min-height: calc(100vh - 122px);
+  background-color: #edeefe;
+}
+
+.chatBox {
+  display: flex;
+  width: 100%;
+  flex-grow: 1;
+}
+
+.minusWidth {
+  width: calc(100% - 518px);
+}
+
+app-main-chat {
+  width: 100%;
+}
+
+app-sidebar {
+  max-width: 366px;
+}
+
+app-secondary-chat {
+  max-width: 485px;
+}
+
+.slideIn {
+  float: right;
+  right: 0;
+  transition: 0.3s linear;
+  animation: slideIn;
+}
+
+.slideOut {
+  float: left;
+  margin-right: -390px;
+  transition: 0.3s linear;
+  animation: slideOut;
+}
+
+.slideInRightWindow {
+  transition: 0.3s linear;
+  width: 100%;
+  animation: slideIn;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+  }
+
+  to {
+    width: 100%;
+    transform: translateX(0);
+  }
+}
+
+.slideOutRightWindow {
+  transition: 0.3s linear;
+  animation: slideOut;
+  width: 0;
+  padding-right: 0;
+  padding-left: 0;
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+/*------------- RESPONSIVE -------------*/
+
+@media screen and (max-width: $RESPONSIVE_THRESHOLD) {
+  app-sidebar-toggle {
+    display: none;
+  }
+
+  app-secondary-chat {
+    width: 100vw;
+    max-width: 100vw;
+  }
+
+  app-sidebar {
+    width: 100vw;
+    max-width: 100vw;
+  }
+}
+
+@media screen and (max-width: $RESPONSIVE_THRESHOLD_MOBILE) {
+  app-header {
+    height: 80px;
+  }
+
+  app-sidebar,
+  app-main-chat,
+  app-secondary-chat {
+    padding: 0;
+    min-height: calc(100vh - 80px);
+  }
+}
+
+@media screen and (max-width: $RESPONSIVE_THRESHOLD_MOBILE380px) {
+  app-sidebar,
+  app-main-chat,
+  app-secondary-chat {
+    min-height: calc(100vh - 80px);
+  }
+}

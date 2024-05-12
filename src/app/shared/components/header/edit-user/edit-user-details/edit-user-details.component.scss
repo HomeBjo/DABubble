@@ -1,0 +1,194 @@
+@import "../../../../../../styles.scss";
+
+.whiteBox {
+  width: 400px;
+  height: auto;
+  background-color: white;
+  border-radius: 35px;
+  position: absolute;
+  z-index: 5;
+  top: 110px;
+  right: 20px;
+  @include displayFlex();
+  flex-direction: column;
+  padding: 24px;
+  .boxHeader {
+    width: 360px;
+    @include displayFlex($j: space-between);
+  }
+  .profileImg {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin: 56px;
+  }
+  p {
+    color: red;
+    margin-bottom: 16px;
+  }
+}
+
+.inputBox {
+  width: calc(100% - 24px);
+  margin-bottom: 24px;
+  .positionName {
+    .positionNameIcon {
+      margin: 12px 0;
+      @include displayFlex($j: flex-start, $g: 20px);
+      p {
+        font-size: 21px;
+        font-weight: 600;
+        margin: 0;
+        color: #000;
+      }
+    }
+    .inputName {
+      width: calc(100% - 24px);
+      border: 1px solid #888dec;
+      outline: none;
+      height: 26px;
+      border-radius: 25px;
+      padding: 8px 12px;
+      margin-bottom: 12px;
+      font-size: 18px;
+      font-weight: 400;
+      transition: 0.3s ease-in-out;
+      &:hover {
+        border: 1px solid #2c36f0;
+      }
+    }
+  }
+}
+
+.inputDisabled {
+  width: calc(100% - 24px);
+  border: none;
+  background-color: rgba(34, 34, 34, 0.2588235294);
+  outline: none;
+  height: 26px;
+  border-radius: 25px;
+  padding: 8px 12px;
+  margin-bottom: 12px;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.position2Btn {
+  margin-bottom: 24px;
+  @include displayFlex($g: 26px);
+  .cancelBtn {
+    width: 120px;
+    height: 48px;
+    background-color: white;
+    border: 1px solid #888dec;
+    border-radius: 25px;
+    font-size: larger;
+    color: #444df2;
+    transition: 0.3s ease-in-out;
+    &:hover {
+      background-color: #444df2;
+      color: white;
+      cursor: pointer;
+    }
+  }
+  .saveBtn {
+    width: 120px;
+    height: 48px;
+    background-color: #444df2;
+    border: none;
+    border-radius: 25px;
+    font-size: larger;
+    color: white;
+    transition: 0.3s ease-in-out;
+    &:hover {
+      background-color: #888dec;
+      cursor: pointer;
+    }
+  }
+}
+
+.grayBackground {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 5;
+}
+
+.disabledBtn {
+  background-color: #22222242;
+  border: none;
+  font-size: larger;
+  color: #fff;
+  width: 120px;
+  height: 48px;
+  border-radius: 25px;
+  font-size: larger;
+}
+
+/*------------- RESPONSIVE -------------*/
+
+@media screen and (max-width: $RESPONSIVE_THRESHOLD_MOBILE) {
+  .whiteBox {
+    border-radius: 35px;
+    width: auto;
+    right: 22px;
+    height: auto;
+    top: unset;
+    right: 15vw;
+    left: 15vw;
+    padding: 24px;
+    .boxHeader {
+      width: 100%;
+      padding: 0 12px;
+      p {
+        font-size: 21px;
+        font-weight: 700;
+      }
+    }
+    .profileImg {
+      width: 120px;
+      height: 120px;
+      margin: 18px;
+    }
+    p {
+      font-size: 13px;
+    }
+  }
+  .detailsBox {
+    width: 100%;
+    padding: 0 12px;
+    .editBtnPosition {
+      .name {
+        font-size: 24px;
+        font-weight: 700;
+      }
+    }
+  }
+
+  .emailBox {
+    @include displayFlex($j: flex-start, $a: flex-start, $g: 10px);
+    img {
+      margin-top: 2px;
+    }
+    .email {
+      > p {
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 10px;
+      }
+      > a {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .whiteBox {
+    right: 5vw;
+    left: 5vw;
+  }
+}

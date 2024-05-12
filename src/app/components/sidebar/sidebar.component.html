@@ -1,0 +1,45 @@
+<section>
+  @if (viewWidth >= RESPONSIVE_THRESHOLD) {
+  <div class="headline">
+    <div class="logo">
+      <img src="./assets/img/sidebar/workspace-logo.svg" alt="" />
+      <p>Devspace</p>
+    </div>
+    <div
+      class="btn"
+      [ngStyle]="{
+        'padding-right': btnPosition ? '0' : '',
+        'justify-content': btnPosition ? 'center' : ''
+      }"
+    >
+      <app-small-btn
+        [imgSrc]="'sidebar/new-chat.svg'"
+        [imgSize]="'24px'"
+        [btnSize]="'48px'"
+        [btnBgHoverColor]="'#edeefe'"
+        style="margin-right: -26px"
+        routerLink="/main/searchBar"
+        (click)="closeSecondaryChatAndSidebar()"
+      >
+      </app-small-btn>
+    </div>
+  </div>
+  } @else {
+  <div class="searchBar">
+    <app-search-bar></app-search-bar>
+  </div>
+  }
+
+  <div class="channels">
+    <app-sidebar-channels
+      [viewWidth]="viewWidth"
+      [currentChannel]="currentChannel"
+    ></app-sidebar-channels>
+  </div>
+  <div class="directMessages">
+    <app-sidebar-direct-messages
+      [viewWidth]="viewWidth"
+      [currentChannel]="currentChannel"
+    ></app-sidebar-direct-messages>
+  </div>
+</section>

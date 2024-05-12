@@ -1,0 +1,75 @@
+<section>
+  <!-- Channel -->
+  @if (getChannel(currentChannel).length > 0) {
+  <div class="headline"># {{ getChannel(currentChannel)[0].name }}</div>
+  <p>
+    {{ "info.channelCreate" | translate }}
+    @if(getChannel(currentChannel)[0].creator == "Admin") { Admin } @else { @for
+    (user of getChatUsers(getChannel(currentChannel)[0].creator); track user) {
+    {{ user.firstName }}
+    {{ user.lastName }}
+    } } {{ "info.channelCreate2" | translate }}
+    {{ timeConverter(getChannel(currentChannel)[0].createdDate)
+    }}{{ "info.channelCreate3" | translate }}
+    <span>#{{ getChannel(currentChannel)[0].name }}</span
+    >.
+  </p>
+  <!-- Privat Chat -->
+  } @if (getPrivatChannel(currentChannel).length > 0) {
+  <!-- My Chat -->
+  @if (getPrivatChannel(currentChannel)[0].talkToUserId ==
+  userService.getCurrentUserId() &&
+  getPrivatChannel(currentChannel)[0].creatorId ==
+  userService.getCurrentUserId()) {
+  <div class="headlinePrvChat">
+    @for (user of getChatUsers(getPrivatChannel(currentChannel)[0].creatorId);
+    track user) {
+    <div class="imgBoxPrvChat">
+      <img class="imgUserPrvChat" src="{{ user.avatar }}" />
+    </div>
+    <p>{{ user.firstName }} {{ user.lastName }} (Du)</p>
+    }
+  </div>
+  <p>
+    {{ "info.notice" | translate }}
+  </p>
+  } @else {
+  <!-- Privat Chat (creatorId) -->
+  @if (getPrivatChannel(currentChannel)[0].talkToUserId ==
+  userService.getCurrentUserId()) {
+  <div class="headlinePrvChat">
+    @for (user of getChatUsers(getPrivatChannel(currentChannel)[0].creatorId);
+    track user) {
+    <div class="imgBoxPrvChat">
+      <img class="imgUserPrvChat" src="{{ user.avatar }}" />
+    </div>
+    <p>{{ user.firstName }} {{ user.lastName }}</p>
+    }
+  </div>
+  <p>
+    {{ "info.talkTo" | translate }} @for (user of
+    getChatUsers(getPrivatChannel(currentChannel)[0].creatorId); track user) {
+    <span>&commat;{{ user.firstName }}{{ user.lastName }}</span>
+    } {{ "info.talkTo2" | translate }}
+  </p>
+  } @else {
+  <!-- Privat Chat (talkToUserId) -->
+  <div class="headlinePrvChat">
+    @for (user of
+    getChatUsers(getPrivatChannel(currentChannel)[0].talkToUserId); track user)
+    {
+    <div class="imgBoxPrvChat">
+      <img class="imgUserPrvChat" src="{{ user.avatar }}" />
+    </div>
+    <p>{{ user.firstName }} {{ user.lastName }}</p>
+    }
+  </div>
+  <p>
+    {{ "info.talkTo" | translate }} @for (user of
+    getChatUsers(getPrivatChannel(currentChannel)[0].talkToUserId); track user)
+    {
+    <span>&commat;{{ user.firstName }} {{ user.lastName }}</span>
+    } {{ "info.talkTo2" | translate }}
+  </p>
+  } } }
+</section>

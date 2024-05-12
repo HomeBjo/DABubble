@@ -1,0 +1,86 @@
+<div class="inputPosition">
+  <input
+    type="text"
+    maxlength="24"
+    placeholder="{{ 'search-bar.placeholder' | translate }}"
+    class="fontNunito"
+    [(ngModel)]="inputValue"
+    (keyup)="filterAllInfo(inputValue)"
+  />
+  <img class="searchImg" src="./assets/img/search-icon.svg" />
+  <div
+    class="suggestionBox"
+    [ngClass]="{
+      showSearchWindow: toggleBoolean.openSearchWindowHead,
+      hideSearchWindow: !toggleBoolean.openSearchWindowHead
+    }"
+  >
+    <!-----Search output------>
+    @if (filteredUsers.length > 0 && inputValue != '') {
+    <div class="contantBox">
+      <h4>{{ 'search-bar-header.user' | translate }}:</h4>
+      <div class="ansersBox">
+        @for (user of filteredUsers; track user) {
+        <div
+          class="userDiv"
+          (click)="checkRoute([user]); closeSecondaryChatAndSidebar()"
+        >
+          <div class="userImgDiv">
+            <img src="{{ user.avatar }}" class="userProfilImg" />
+            @if (user.status === true) {
+            <img src="./assets/img/onlineRing.svg" class="userOnlineImg" />
+            } @else {
+            <img src="./assets/img/offlineRing.svg" class="userOnlineImg" />
+            }
+          </div>
+          <p
+            [innerHTML]="
+              user.firstName + ' ' + user.lastName | highlight : inputValue
+            "
+          ></p>
+        </div>
+        }
+      </div>
+    </div>
+    } @if (filteredChannels.length > 0 && inputValue != '') {
+    <div class="contantBox">
+      <h4>{{ 'search-bar-header.channels' | translate }}:</h4>
+      <div class="ansersBox">
+        @for (channel of filteredChannels; track channel) {
+        <p
+          class="channelName"
+          [innerHTML]="channel.name | highlight : inputValue"
+          routerLink="/main/{{ channel.id }}"
+          (click)="closeSecondaryChatAndSidebar()"
+        >
+          #
+        </p>
+        }
+      </div>
+    </div>
+    } @if (filteredChats.length > 0 && inputValue != '') {
+    <div class="contantBoxChats">
+      <h4>{{ 'search-bar-header.thread' | translate }}:</h4>
+      <div class="channelAnswers">
+        @for (chat of filteredChats; track chat) {
+        <div class="ansersBoxChats">
+          <p class="threadNmae">[ {{ getChannel(chat.channelId) }} ]</p>
+          <div class="threadContetntBox">
+            <p
+              class="threadContetnt"
+              [innerHTML]="chat.message | highlight : inputValue"
+              routerLink="/main/{{ chat.channelId }}"
+              (click)="closeSecondaryChatAndSidebar()"
+            ></p>
+          </div>
+        </div>
+        }
+      </div>
+    </div>
+    } @if ((filteredUsers.length === 0 && inputValue != '') &&
+    (filteredChannels.length === 0 && inputValue != '') && (filteredChats.length
+    === 0 && inputValue != '')) {
+    <p class="threadContetnt">{{ "search-bar.errorMessage" | translate }}</p>
+    }
+  </div>
+</div>

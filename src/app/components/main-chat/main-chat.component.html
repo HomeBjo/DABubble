@@ -1,0 +1,179 @@
+<section>
+  @if (checkCurrentChannel(currentChannel) == 'searchBar') {
+  <!-----Searchwindow at the sidebar----->
+  <div class="headerSearchBar">
+    <p>{{ "main-chat.message" | translate }}</p>
+    <input
+      type="text"
+      placeholder="{{ 'main-chat.placeholder' | translate }}"
+      [(ngModel)]="chatService.inputValue"
+      (keyup)="filterChannelAndUser(chatService.inputValue)"
+    />
+    @if (toggleBoolean.openSearchWindow) {
+    <!-----search suggestions----->
+    <div class="filteredElementWindow">
+      @if (firstLetter == '#') {
+      <!-- render channels -->
+      @for (i of checkIfUserHasAccessToChannel(); track $index) {
+      <h3
+        class="user"
+        (click)="chooseElement(i)"
+        [innerHTML]="i.name | highlight : chatService.inputValue"
+      ></h3>
+      } } @else if (firstLetter == '@') {
+      <!-- render users -->
+      @for (i of userService.allUsers; track $index) {
+      <div class="user" (click)="chooseElement(i)">
+        <div class="positionImgs">
+          <img src="{{ i.avatar }}" class="avatarImg" />
+          <img
+            src="./assets/img/{{
+              i.status ? 'onlineRing.svg' : 'offlineRing.svg'
+            }}"
+            class="onlineIconFilterWindow"
+          />
+        </div>
+        <h3
+          [innerHTML]="
+            i.firstName + ' ' + i.lastName | highlight : chatService.inputValue
+          "
+        ></h3>
+      </div>
+      } }
+    </div>
+    }
+  </div>
+  <div
+    [ngStyle]="{
+      'margin-top': viewWidth <= RESPONSIVE_THRESHOLD_MOBILE ? '-88px' : '-64px'
+    }"
+  >
+    <app-chat-content
+      [getChatChannel]="getChatChannel"
+      [getChatUsers]="getChatUsers"
+      [currentChannel]="currentChannel"
+      [hideContentWindow]="false"
+      [isSearchChannel]="true"
+    >
+    </app-chat-content>
+  </div>
+  } @else { @if(checkCurrentChannel(currentChannel) == 'allPrvChannels'){
+  <!------------shwo prv chat----------->
+  @for (user of getPrvChat(currentChannel); track user; let i = $index) {
+  <div class="headerPrvChat">
+    <div class="headlinePrvChat" (click)="openUserProfil()">
+      @if (user.talkToUserId == userService.getCurrentUserId()) {
+      <div class="imgBoxPrvChat">
+        <img
+          class="imgUserPrvChat"
+          src="{{ filterUser(user.creatorId)[i].avatar }}"
+        />
+        <img
+          src="./assets/img/{{
+            filterUser(user.creatorId)[i].status
+              ? 'onlineRing.svg'
+              : 'offlineRing.svg'
+          }}"
+          class="onlineIcon"
+        />
+      </div>
+      <p>
+        {{ filterUser(user.creatorId)[i].firstName }}
+        {{ filterUser(user.creatorId)[i].lastName }}
+      </p>
+      } @else {
+      <div class="imgBoxPrvChat">
+        <img
+          class="imgUserPrvChat"
+          src="{{ filterUser(user.talkToUserId)[i].avatar }}"
+        />
+      </div>
+      <p>
+        {{ filterUser(user.talkToUserId)[i].firstName }}
+        {{ filterUser(user.talkToUserId)[i].lastName }}
+      </p>
+      }
+    </div>
+  </div>
+  <app-chat-content
+    [getChatChannel]="getChatChannel"
+    [getChatUsers]="getChatUsers"
+    [currentChannel]="currentChannel"
+    [isPrivatChannel]="true"
+    [hideContentWindow]="false"
+    [viewWidth]="viewWidth"
+  >
+  </app-chat-content>
+  } } @else if (checkCurrentChannel(currentChannel) == 'allChannels') {
+  <!-------show public channel-chat ----------->
+  @for(channel of getChannelName(currentChannel); track channel) {
+  <div class="header">
+    <div class="headline" (click)="showMenu()">
+      <img src="./assets/img/hashtag.svg" alt="" />
+      <p>{{ channel.name }}</p>
+      <img src="./assets/img/keyboardArrowDown.svg" alt="" />
+    </div>
+    <div class="addUserToChannelBox">
+      @if (filterChannelForSelectedUser(currentChannel)) {
+      <div class="addedUsers" (click)="openMemberWindow(false)">
+        @for(user of userService.getFiltertUsers.slice(0, 3) ; track user) {
+        <div class="userAvatar">
+          <img src="{{ user.avatar }}" alt="" />
+        </div>
+        }
+        <div *ngIf="userService.getFiltertUsers.length > 3" class="dotsImg">
+          <img
+            *ngFor="let i of [0, 1, 2]"
+            src="./assets/img/offlineRing.svg"
+            alt=""
+          />
+        </div>
+        <h3>{{ userService.getFiltertUsers.length }}</h3>
+      </div>
+      <app-small-btn
+        [imgSrc]="'addPerson.svg'"
+        [imgSize]="'20px'"
+        [btnSize]="'32px'"
+        [btnBgHoverColor]="'#edeefe'"
+        (click)="
+          viewWidth <= RESPONSIVE_THRESHOLD_MOBILE
+            ? openMemberWindow(false)
+            : openMemberWindow(true)
+        "
+      ></app-small-btn>
+      }
+    </div>
+  </div>
+  <app-show-channel-member
+    [ngClass]="{
+      dBlock: toggleBoolean.openChannelMemberWindow,
+      dNone: !toggleBoolean.openChannelMemberWindow
+    }"
+    [getFiltertUsers]="userService.getFiltertUsers"
+    [currentChannel]="currentChannel"
+    [isSecondaryChatOpen]="isSecondaryChatOpen"
+  ></app-show-channel-member>
+  <app-chat-content
+    [getChatChannel]="getChatChannel"
+    [getChatUsers]="getChatUsers"
+    [currentChannel]="currentChannel"
+    [hideContentWindow]="false"
+    [viewWidth]="viewWidth"
+  >
+  </app-chat-content>
+  }
+  <!-- Channel informations dialog -->
+  @if (openMenu) {
+  <app-channel-informations
+    [viewWidth]="viewWidth"
+    (closeEditEmitter)="closeEditEmitter($event)"
+    [currentChannel]="currentChannel"
+  ></app-channel-informations>
+  } } } @if (showProfil) {
+  <app-open-send-prv-message-window
+    [showProfil]="showProfil"
+    (showProfilWindow)="getShowProfilWindowBoolean($event)"
+    [talkToUser]="talkToUser"
+  ></app-open-send-prv-message-window>
+  }
+</section>

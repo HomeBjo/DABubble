@@ -1,0 +1,33 @@
+.footer {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  background-color: #eceefe;
+  padding-top: 132px;
+  padding-bottom: 24px;
+  width: 100vw;
+
+  > a {
+    font-size: 18px;
+    font-weight: 400px;
+    text-decoration: none;
+    color: #797ef3;
+    padding-right: 8px;
+    padding: 0px;
+    padding: 4px 12px 4px 12px;
+    border-radius: 100px;
+    border: 1px solid #eceefe;
+    &:hover {
+      border: 1px solid #444df2;
+    }
+  }
+}
+.fontColor {
+  cursor: pointer;
+  color: #444df2;
+}
+@media (max-width: 570px) {
+  .footer {
+    padding-top: 32px;
+  }
+}

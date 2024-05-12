@@ -1,0 +1,76 @@
+<div (click)="toggleBooleans()">
+  @if (userService.isUserLogin) {
+  <app-header [viewWidth]="viewWidth"></app-header>
+  <div class="content">
+    <app-sidebar
+      [viewWidth]="viewWidth"
+      [btnPosition]="
+        this.viewWidth <= RESPONSIVE_THRESHOLD &&
+        !chatService.isSecondaryChatOpen &&
+        toggleAllBooleans.isSidebarOpen
+      "
+      [ngClass]="{
+        slideIn: this.viewWidth >= RESPONSIVE_THRESHOLD && toggleAllBooleans.isSidebarOpen,
+        slideOut: this.viewWidth >= RESPONSIVE_THRESHOLD && !toggleAllBooleans.isSidebarOpen,
+      }"
+      [ngStyle]="{
+        'margin-right':
+          this.viewWidth <= RESPONSIVE_THRESHOLD_MAX && chatService.isSecondaryChatOpen
+            ? '-390px'
+            : '',
+        display:
+          this.viewWidth <= RESPONSIVE_THRESHOLD && !toggleAllBooleans.isSidebarOpen
+            ? 'none'
+            : 'block',
+
+      }"
+    ></app-sidebar>
+    <app-sidebar-toggle [viewWidth]="viewWidth"></app-sidebar-toggle>
+    <div
+      class="chatBox"
+      [ngStyle]="{
+        display:
+          this.viewWidth <= RESPONSIVE_THRESHOLD &&
+          !chatService.isSecondaryChatOpen &&
+          toggleAllBooleans.isSidebarOpen
+            ? 'none'
+            : ''
+      }"
+    >
+      <app-main-chat
+        [isSecondaryChatOpen]="chatService.isSecondaryChatOpen"
+        [currentChannel]="currentChannel"
+        [viewWidth]="viewWidth"
+        [ngStyle]="{
+          display:
+            this.viewWidth <= RESPONSIVE_THRESHOLD && (chatService.isSecondaryChatOpen || toggleAllBooleans.isSidebarOpen)
+              ? 'none'
+              : 'block',
+          width:
+            this.viewWidth <= RESPONSIVE_THRESHOLD && (chatService.isSecondaryChatOpen || toggleAllBooleans.isSidebarOpen)
+              ? '0%'
+              : '',
+        }"
+      ></app-main-chat>
+      <app-secondary-chat
+        [currentChannel]="currentChannel"
+        [viewWidth]="viewWidth"
+        [ngClass]="{
+          slideInRightWindow:
+            this.viewWidth >= RESPONSIVE_THRESHOLD && chatService.isSecondaryChatOpen,
+          slideOutRightWindow:
+            this.viewWidth >= RESPONSIVE_THRESHOLD && !chatService.isSecondaryChatOpen,
+        }"
+        [ngStyle]="{
+          display:
+            this.viewWidth <= RESPONSIVE_THRESHOLD &&
+            !chatService.isSecondaryChatOpen
+              ? 'none'
+              : 'block'
+        }"
+      ></app-secondary-chat>
+    </div>
+  </div>
+  }
+  <app-overlay></app-overlay>
+</div>

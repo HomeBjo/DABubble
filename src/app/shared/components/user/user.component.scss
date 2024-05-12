@@ -1,0 +1,88 @@
+@import '../../../../styles.scss';
+
+.mainBox{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.3);
+    @include displayFlex();
+    z-index: 5;
+    .whiteBox{
+        width: 400px;
+        height: auto;
+        background-color: whitesmoke;
+        border-radius: 15px;
+        @include displayFlex();
+        flex-direction: column;
+        padding-top: 32px;
+        .boxHeader{
+            width: 360px;
+            @include displayFlex($j: space-between);
+            >p{
+                font-size: 20px;
+                font-weight: 600;
+                margin: 0;
+            }
+            >img{
+                cursor: pointer;
+            }
+
+        }
+        .profileImg{
+            width: 200px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin: 56px;
+        }
+        >button{
+            @include displayFlex($g: 12px);
+            background-color: #444df2;
+            border: none;
+            border-radius: 25px;
+            padding: 12px;
+            padding-left: 22px;
+            padding-right: 22px;
+            font-size: larger;
+            font-weight: 500;
+            color: white;
+            margin: 32px;
+            cursor: pointer;
+        }
+    }
+}
+
+.detailsBox{
+    width: 360px;
+    h1{
+        font-size: 32px;
+        font-weight: 700;
+        margin-bottom: 20px;
+    }
+    .statusBox{
+        @include displayFlex($j:flex-start, $g: 12px);
+        margin-bottom: 40px;
+        >p{
+            margin: 0;
+            font-size: medium;
+            font-weight: 500;
+        }
+    }
+
+}
+
+.fontColorGreen{
+    color: #92C83E;
+}
+
+.emailBox{
+    @include displayFlex($j: flex-start, $a: flex-start, $g: 20px);
+    .emailH2{
+        >a{
+            color: #4EA1FF;
+            font-size: 16px;
+            text-decoration: none;
+        }
+    }
+}

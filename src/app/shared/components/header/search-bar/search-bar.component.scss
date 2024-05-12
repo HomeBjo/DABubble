@@ -1,0 +1,193 @@
+@import "./../../../../../styles.scss";
+
+.inputPosition {
+  @include displayFlex();
+  position: relative;
+  input {
+    width: 40vw;
+    height: 70px;
+    border-radius: 30px;
+    padding: 0 24px;
+    font-size: larger;
+    border: none;
+    outline: none;
+  }
+  .searchImg {
+    position: absolute;
+    right: 36px;
+  }
+}
+
+.suggestionBox {
+  z-index: 5;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  border-radius: 30px;
+  background-color: white;
+  box-shadow: rgb(79 98 117) 0px 20px 30px -10px;
+  scrollbar-width: none;
+  overflow: scroll;
+  -ms-overflow-style: none;
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+}
+.contantBox {
+  @include displayFlex($j: space-between, $a: flex-start);
+  width: 100%;
+  h4 {
+    width: 30%;
+  }
+  .ansersBox {
+    @include displayFlex($a: flex-start, $g: 4px);
+    flex-direction: column;
+    width: 70%;
+  }
+}
+
+.contantBoxChats {
+  @include displayFlex($j: space-between, $a: flex-start);
+  flex-direction: column;
+  width: 100%;
+  .channelAnswers {
+    width: 100%;
+    @include displayFlex($g: 4px);
+    flex-direction: column;
+    .ansersBoxChats {
+      width: 100%;
+      @include displayFlex($j: space-between, $a: flex-start);
+      .threadNmae {
+        width: 30%;
+      }
+      .threadContetntBox {
+        width: 70%;
+        .threadContetnt {
+          width: fit-content;
+          padding: 4px;
+          &:hover {
+            background-color: #edeefe;
+            border-radius: 25px;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+}
+
+.channelName {
+  padding: 4px;
+  &:hover {
+    background-color: #edeefe;
+    border-radius: 25px;
+    cursor: pointer;
+  }
+}
+
+.userDiv {
+  @include displayFlex();
+  padding: 4px;
+  position: relative;
+  &:hover {
+    background-color: #edeefe;
+    border-radius: 25px;
+    cursor: pointer;
+  }
+  .userImgDiv {
+    @include displayFlex($j: space-between, $a: flex-end);
+    .userProfilImg {
+      width: 32px;
+      height: 32px;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+    .userOnlineImg {
+      position: absolute;
+      left: 28px;
+      width: 12px;
+      height: 12px;
+      object-fit: cover;
+    }
+  }
+  p {
+    margin-left: 12px;
+  }
+}
+
+.showSearchWindow {
+  animation: shwoSW 0.3s ease-in-out;
+  width: calc(40vw - 42px);
+  max-height: 40vh;
+  padding: 20px;
+}
+
+@keyframes shwoSW {
+  from {
+    max-height: 0;
+  }
+  to {
+    max-height: 40vh;
+    padding: 20px;
+  }
+}
+
+.hideSearchWindow {
+  animation: hideSW 0.3s ease-in-out;
+  width: calc(40vw - 42px);
+  max-height: 0;
+  padding: 0;
+}
+
+@keyframes hideSW {
+  from {
+    max-height: 40vh;
+    padding: 20px;
+  }
+  to {
+    max-height: 0;
+    padding: 20px;
+  }
+}
+
+/*------------- RESPONSIVE -------------*/
+
+@media screen and (max-width: $RESPONSIVE_THRESHOLD) {
+  .inputPosition {
+    input {
+      width: calc(100vw - 72px);
+      height: 38px;
+      border-radius: 24px;
+      padding: 6px 12px;
+      border: 1px solid #adb0d9;
+    }
+  }
+
+  .showSearchWindow,
+  .hideSearchWindow {
+    width: calc(100vw - 86px);
+    max-height: 60vh;
+  }
+}
+
+@media screen and (max-width: $RESPONSIVE_THRESHOLD_MOBILE) {
+  .inputPosition {
+    input {
+      width: calc(100vw - 56px);
+    }
+  }
+
+  .showSearchWindow,
+  .hideSearchWindow {
+    width: calc(100vw - 56px);
+    padding: 20px 10px;
+  }
+
+  .hideSearchWindow {
+    padding: 0;
+  }
+
+  .suggestionBox {
+    left: unset;
+  }
+}

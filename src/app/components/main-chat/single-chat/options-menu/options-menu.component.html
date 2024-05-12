@@ -1,0 +1,137 @@
+<section
+  (mouseleave)="this.isNavOpen = false; this.isEmojiPickerVisible = false"
+  [ngClass]="{ mirror: user.id === userService.getCurrentUserId() }"
+>
+  @if (!openOnSecondaryChat) {
+  <div class="content">
+    <app-small-btn
+      [imgSrc]="'okay.svg'"
+      [imgSize]="viewWidth >= RESPONSIVE_THRESHOLD_MOBILE ? '24px' : '17px'"
+      [btnSize]="viewWidth >= RESPONSIVE_THRESHOLD_MOBILE ? '36px' : '25px'"
+      [imgFilter]="'none'"
+      [btnBgHoverColor]="'#edeefe'"
+      [ngClass]="{ mirror: user.id === userService.getCurrentUserId() }"
+      (click)="addReactionIcon('okay', currentChat)"
+    >
+    </app-small-btn>
+    <app-small-btn
+      [imgSrc]="'clap-hands.svg'"
+      [imgSize]="viewWidth >= RESPONSIVE_THRESHOLD_MOBILE ? '24px' : '17px'"
+      [btnSize]="viewWidth >= RESPONSIVE_THRESHOLD_MOBILE ? '36px' : '25px'"
+      [imgFilter]="'none'"
+      [btnBgHoverColor]="'#edeefe'"
+      [ngClass]="{ mirror: user.id === userService.getCurrentUserId() }"
+      (click)="addReactionIcon('clap-hands', currentChat)"
+    >
+    </app-small-btn>
+    <app-small-btn
+      [imgSrc]="'add-reaction.svg'"
+      [imgSize]="viewWidth >= RESPONSIVE_THRESHOLD_MOBILE ? '24px' : '17px'"
+      [btnSize]="viewWidth >= RESPONSIVE_THRESHOLD_MOBILE ? '36px' : '25px'"
+      [btnBgHoverColor]="'#edeefe'"
+      [ngClass]="{ mirror: user.id === userService.getCurrentUserId() }"
+      (click)="toggleEmojiPicker()"
+    >
+    </app-small-btn>
+    @if (!isPrivatChannel) {
+    <app-small-btn
+      [imgSrc]="'answer.svg'"
+      [imgSize]="viewWidth >= RESPONSIVE_THRESHOLD_MOBILE ? '24px' : '17px'"
+      [btnSize]="viewWidth >= RESPONSIVE_THRESHOLD_MOBILE ? '36px' : '25px'"
+      [btnBgHoverColor]="'#edeefe'"
+      [ngClass]="{ mirror: user.id === userService.getCurrentUserId() }"
+      (click)="toggleSecondaryChat(currentChat)"
+    >
+    </app-small-btn>
+    } @if (user.id === userService.getCurrentUserId()) {
+    <app-small-btn
+      [imgSrc]="'more-vertical.svg'"
+      [imgSize]="viewWidth >= RESPONSIVE_THRESHOLD_MOBILE ? '24px' : '17px'"
+      [btnSize]="viewWidth >= RESPONSIVE_THRESHOLD_MOBILE ? '36px' : '25px'"
+      [btnBgHoverColor]="'#edeefe'"
+      [ngClass]="{ mirror: user.id === userService.getCurrentUserId() }"
+      (click)="toggleNav()"
+    >
+    </app-small-btn>
+    }
+  </div>
+  <div
+    class="nav"
+    [ngClass]="{
+      'd-none': !isNavOpen,
+      'animation-coming-in': isNavOpen,
+      'animation-coming-out': !isNavOpen
+    }"
+  >
+    <div class="navbar">
+      <p
+        [ngClass]="{ mirror: user.id === userService.getCurrentUserId() }"
+        (click)="editMsg()"
+      >
+        {{ "options-menu.edit" | translate }}
+      </p>
+      <p
+        [ngClass]="{ mirror: user.id === userService.getCurrentUserId() }"
+        (click)="deleteMsg('chats')"
+      >
+        {{ "options-menu.delete" | translate }}
+      </p>
+    </div>
+  </div>
+  } @else {
+  <div class="content">
+    <app-small-btn
+      [imgSrc]="'add-reaction.svg'"
+      [imgSize]="viewWidth >= RESPONSIVE_THRESHOLD_MOBILE ? '24px' : '17px'"
+      [btnSize]="viewWidth >= RESPONSIVE_THRESHOLD_MOBILE ? '36px' : '25px'"
+      [btnBgHoverColor]="'#edeefe'"
+      [ngClass]="{ mirror: user.id === userService.getCurrentUserId() }"
+      (click)="toggleEmojiPicker()"
+    ></app-small-btn>
+    @if (user.id === userService.getCurrentUserId()) {
+    <app-small-btn
+      [imgSrc]="'more-vertical.svg'"
+      [imgSize]="viewWidth >= RESPONSIVE_THRESHOLD_MOBILE ? '24px' : '17px'"
+      [btnSize]="viewWidth >= RESPONSIVE_THRESHOLD_MOBILE ? '36px' : '25px'"
+      [btnBgHoverColor]="'#edeefe'"
+      [ngClass]="{ mirror: user.id === userService.getCurrentUserId() }"
+      (click)="toggleNav()"
+    >
+    </app-small-btn>
+    }
+  </div>
+  <div
+    class="nav"
+    [ngClass]="{
+      'd-none': !isNavOpen,
+      'animation-coming-in': isNavOpen,
+      'animation-coming-out': !isNavOpen
+    }"
+  >
+    <div class="navbar">
+      <p
+        [ngClass]="{ mirror: user.id === userService.getCurrentUserId() }"
+        (click)="editMsg()"
+      >
+        {{ "options-menu.edit" | translate }}
+      </p>
+      <p
+        [ngClass]="{ mirror: user.id === userService.getCurrentUserId() }"
+        (click)="deleteMsg('chat-answers')"
+      >
+        {{ "options-menu.delete" | translate }}
+      </p>
+    </div>
+  </div>
+  } @if(isEmojiPickerVisible) {
+  <app-emoji-picker
+    [output]="'id'"
+    [ngClass]="{
+      mirror: user.id === userService.getCurrentUserId(),
+      secondaryChatPickerOffset: openOnSecondaryChat
+    }"
+    (emojiOutputEmitter)="emojiOutputEmitter($event, currentChat)"
+    (emojiVisibleEmitter)="emojiVisibleEmitter($event)"
+  ></app-emoji-picker>
+  }
+</section>

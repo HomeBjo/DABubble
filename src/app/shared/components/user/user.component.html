@@ -1,0 +1,28 @@
+<div class="mainBox" [ngClass]="{'dBlock': openProfil, 'dNone': !openProfil}">
+    <div class="whiteBox">
+        <div class="boxHeader fontNunito">
+            <p>Profile</p>
+            <img src="./assets/img/closeIcon.svg">
+        </div>
+
+        <img src="./assets/img/charater1.svg" class="profileImg" (click)="showSideMenu()">
+
+        <div class="detailsBox">
+            <h1 class="fontNunito">Max Müller</h1>
+            <div class="statusBox">
+                <img src="./assets/img/{{ isOnline? 'onlineRing.svg' : 'offlineRing.svg'}}">
+                <p [ngClass]="{'fontColorGreen': isOnline }">Aktiv</p>
+            </div>
+
+            <div class="emailBox">
+                <img src="./assets/img/mail-icon.svg">
+                <div class="emailH2">
+                    <h2>{{ 'user.email' | translate }}</h2>
+                    <a href="mailto:wwweewefeff&#64;dede.de" target="_blank" class="fontNunito">maxMüller&#64;ffe.de</a>
+                </div>
+            </div>
+        </div>
+
+        <button><img src="./assets/img/messageIcon.svg">{{ 'user.message' | translate }}</button>
+    </div>
+</div>

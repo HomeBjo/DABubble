@@ -1,0 +1,9 @@
+<section (click)="openSearchbar($event)">
+    <div class="whiteBox">
+        <input type="text" placeholder="To: #channel or @someone" [(ngModel)]="inputValue">
+        <img src="./assets/img/search-icon.svg" (click)="closeSearchWindow($event)">
+    </div>
+    @if (inputValue) {
+        <div class="suggestions"></div>
+    }
+</section>

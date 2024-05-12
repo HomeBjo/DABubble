@@ -1,0 +1,137 @@
+@import "./../../../../../styles.scss";
+
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  max-width: 256px;
+  width: fit-content;
+  height: 46px;
+  background-color: #fff;
+  padding: 3px 15px 3px 20px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  border-bottom-left-radius: 25px;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  white-space: nowrap;
+  position: absolute;
+  top: 52px;
+  right: 0;
+  background-color: #fff;
+  padding: 10px 20px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  p {
+    font-size: 21px;
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    &:hover {
+      color: #545af1;
+      background-color: #edeefe;
+    }
+    &:nth-child(2) {
+      &:hover {
+        color: #fff;
+        background-color: #ed1f79;
+      }
+    }
+  }
+}
+
+.navbar {
+  display: flex;
+  flex-direction: column;
+}
+
+app-emoji-picker {
+  position: absolute;
+  top: 53px;
+  left: -80px;
+  z-index: 5;
+}
+
+app-small-btn {
+  padding: 0 8px;
+}
+
+.d-none {
+  display: none;
+}
+
+.mirror {
+  transform: scaleX(-1);
+}
+
+.secondaryChatPickerOffset {
+  left: -190px !important;
+}
+
+/*------------- ANIMATION -------------*/
+
+.animation-coming-in {
+  animation: coming-in 125ms ease-in-out forwards;
+}
+
+.animation-coming-out {
+  animation: coming-out 125ms ease-in-out forwards;
+}
+
+@keyframes coming-in {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes coming-out {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+}
+
+/*------------- RESPONSIVE -------------*/
+
+@media screen and (max-width: $RESPONSIVE_THRESHOLD_MOBILE) {
+  .content {
+    height: 32px;
+    padding: 2px 10px 2px 14px;
+    border-top-left-radius: 17px;
+    border-top-right-radius: 17px;
+    border-bottom-left-radius: 17px;
+  }
+
+  .nav {
+    top: 37px;
+    padding: 7px 14px;
+    border-top-left-radius: 21px;
+    border-bottom-left-radius: 21px;
+    border-bottom-right-radius: 21px;
+    p {
+      font-size: 18px;
+      font-weight: 600;
+      padding: 7px 14px;
+      border-radius: 21px;
+    }
+  }
+}

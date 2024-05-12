@@ -1,0 +1,343 @@
+@import "../../../../../styles.scss";
+
+.darkBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 2;
+}
+
+.grayBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 4;
+}
+
+.infoMsg {
+  font-size: 18px;
+  font-weight: 400;
+  padding: 12px 0;
+}
+
+.newChannelDescription {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  @include displayFlex();
+  font-family: "Nunito";
+}
+
+.whiteWindow {
+  width: 60vw;
+  max-width: 872px;
+  height: auto;
+  background-color: #fff;
+  border-radius: 25px;
+  z-index: 3;
+  @include displayFlex($a: flex-start, $g: 8px);
+  flex-direction: column;
+  text-align: left;
+  padding: 32px;
+}
+
+.posiotionHeader {
+  @include displayFlex($j: space-between);
+  width: 100%;
+  p {
+    font-size: 24px;
+    font-weight: 700;
+  }
+}
+
+.textfieldStyle {
+  width: calc(100% - 40px);
+  border: 1px solid #888dec;
+  overflow: auto;
+  scrollbar-width: none;
+  outline: none;
+  height: 22px;
+  padding: 18px 20px;
+  border-radius: 40px;
+  opacity: 0px;
+  transition: 0.3s ease-in-out;
+  font-size: 18px;
+  font-weight: 400;
+  margin: 12px 0;
+  &:hover {
+    border: 1px solid #2c36f0;
+  }
+}
+textarea {
+  resize: none;
+  min-height: 72px;
+}
+.descriptionBox {
+  @include displayFlex();
+  position: relative;
+  p {
+    font-size: 18px;
+    font-weight: 700;
+    padding-top: 6px;
+  }
+  span {
+    font-size: 16px;
+    font-weight: 400;
+    padding-top: 6px;
+  }
+  .warning{
+    font-size: 18px;
+    font-weight: 500;
+    padding-top: 6px;
+    color: #ff0000;
+    margin-left: 26px;
+  }
+}
+.hashtag {
+  position: absolute;
+  bottom: -58px;
+  left: 18px;
+  filter: brightness(0) saturate(100%) invert(45%) sepia(22%) saturate(0%)
+    hue-rotate(159deg) brightness(97%) contrast(88%);
+}
+.hashtagPadding {
+  width: calc(100% - 60px);
+  padding: 18px 20px 18px 40px !important;
+}
+
+.btnBox {
+  width: 100%;
+  @include displayFlex($j: flex-end);
+  .furterBtnClass {
+    width: 120px;
+    height: 48px;
+    background-color: white;
+    border: 1px solid #888dec;
+    border-radius: 25px;
+    font-size: larger;
+    color: #444df2;
+    transition: 0.3s ease-in-out;
+    &:hover {
+      background-color: #444df2;
+      color: white;
+      cursor: pointer;
+    }
+  }
+}
+
+.smalWhiteBox {
+  padding: 32px;
+  width: 48vw;
+  height: auto;
+  background-color: #fff;
+  border-radius: 25px;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+  .positionSelectionBtn {
+    @include displayFlex($j: flex-start, $g: 12px);
+    p {
+      display: flex;
+      font-size: 18px;
+      font-weight: 400;
+    }
+    span {
+      font-size: 18px;
+      font-weight: 400;
+      color: #535af1;
+    }
+    img {
+      cursor: pointer;
+    }
+  }
+  .addedUserBox {
+    display: flex;
+    flex-wrap: wrap;
+    height: auto;
+    max-width: 100%;
+    border: 1px solid #888dec;
+    background-color: white;
+    border-radius: 25px;
+    transition: 0.3s ease-in-out;
+    position: relative;
+    &:hover {
+      border: 1px solid #2c36f0;
+    }
+    .userPosition {
+      @include displayFlex($g: 8px);
+      padding: 4px;
+      padding-left: 8px;
+      padding-right: 8px;
+      background-color: #edeefe;
+      border-radius: 25px;
+      border-radius: 25px;
+      margin: 4px;
+      .avatarImg {
+        width: 32px;
+        height: 32px;
+        object-fit: cover;
+        border-radius: 50%;
+      }
+      .imgClose {
+        width: 12px;
+        object-fit: contain;
+        transition: 0.1s ease-in-out;
+        cursor: pointer;
+        &:hover {
+          scale: 1.1;
+          filter: brightness(0) saturate(100%) invert(8%) sepia(96%)
+            saturate(6339%) hue-rotate(1deg) brightness(102%) contrast(109%);
+        }
+      }
+    }
+    .inputfieldStyle {
+      width: auto;
+      flex-grow: 1;
+      outline: none;
+      border: none;
+      border-radius: 25px;
+      height: 26px;
+      padding: 12px;
+      height: auto;
+      font-size: larger;
+    }
+  }
+  .positionCreateBtn {
+    width: 100%;
+    @include displayFlex($j: flex-end);
+  }
+
+  .textfieldStyle {
+    width: calc(100% - 24px);
+    border: 1px solid #888dec;
+    outline: none;
+    height: 26px;
+    border-radius: 25px;
+    padding: 8px;
+    padding-left: 12px;
+    padding-right: 12px;
+    height: auto;
+    font-size: larger;
+    transition: 0.3s ease-in-out;
+    &:hover {
+      border: 1px solid #2c36f0;
+    }
+  }
+  button {
+    @include displayFlex();
+    width: 120px;
+    height: 48px;
+    background-color: white;
+    border: 1px solid #888dec;
+    border-radius: 25px;
+    font-size: larger;
+    color: #444df2;
+    transition: 0.3s ease-in-out;
+    &:hover {
+      background-color: #444df2;
+      color: white;
+      cursor: pointer;
+    }
+  }
+}
+
+.showSearchedUsersWindow {
+  width: auto;
+  max-height: 222px;
+  overflow: auto;
+  scrollbar-width: none;
+  background-color: white;
+  border-radius: 25px;
+  border-top-left-radius: 0;
+  border: 1px solid #888dec;
+  position: absolute;
+  top: 88%;
+  left: 24px;
+  padding: 8px;
+  text-align: start;
+  .positionOfAllUsersInBox {
+    @include displayFlex($a: flex-start);
+    flex-direction: column;
+    .user {
+      @include displayFlex($g: 12px);
+      padding: 6px;
+      margin-bottom: 6px;
+      cursor: pointer;
+      transition: 0.2s ease-in-out;
+      &:hover {
+        background-color: #edeefe;
+        border-radius: 25px;
+      }
+      .positionImgs {
+        @include displayFlex($a: flex-end);
+        .avatarImg {
+          width: 40px;
+          height: 40px;
+          object-fit: cover;
+          border-radius: 50%;
+        }
+        .onlineIcon {
+          width: 12px;
+          height: 12px;
+          border-radius: 50%;
+          margin-left: -10px;
+        }
+      }
+    }
+  }
+}
+
+.headerAddPeople {
+  @include displayFlex($j: space-between);
+}
+
+.disabledBtn {
+  background-color: #22222242;
+  border: none;
+  font-size: larger;
+  color: #fff;
+  width: 120px;
+  height: 48px;
+  border-radius: 25px;
+  font-size: larger;
+}
+
+/*------------- RESPONSIVE -------------*/
+
+@media screen and (max-width: $RESPONSIVE_THRESHOLD_MOBILE) {
+  .whiteWindow {
+    justify-content: start;
+    width: 100vw;
+    height: calc(100vh - 64px);
+    border-radius: 0;
+  }
+
+  .smalWhiteBox {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 5;
+    width: calc(100vw - 64px);
+    height: fit-content;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    box-shadow: 0px -3px 10px 0px #00000033;
+  }
+
+  .showSearchedUsersWindow {
+    max-height: 80px;
+  }
+}

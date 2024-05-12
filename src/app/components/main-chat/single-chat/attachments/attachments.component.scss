@@ -1,0 +1,71 @@
+@import "./../../../../../styles.scss";
+
+.files {
+  display: flex;
+
+  max-width: calc(100vw - 140px);
+  overflow: auto;
+  .filesView {
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    filter: drop-shadow(3px 3px 3px rgba(0, 0, 0, 0.3));
+    img,
+    video {
+      height: 7.5vw;
+      min-height: 80px;
+      width: auto;
+      border-radius: 12px;
+    }
+    .otherFiles {
+      height: 5vw;
+      min-height: 60px;
+      width: auto;
+      border-radius: 12px;
+    }
+    &:hover {
+      filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.35));
+    }
+  }
+}
+
+/*------------- RESPONSIVE -------------*/
+
+@media screen and (max-width: 510px) {
+  .files {
+    .filesView {
+      audio {
+        width: 250px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 460px) {
+  .files {
+    .filesView {
+      audio {
+        width: 200px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 410px) {
+  .files {
+    .filesView {
+      audio {
+        width: 150px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .files {
+    .filesView {
+      audio {
+        width: 90px;
+      }
+    }
+  }
+}

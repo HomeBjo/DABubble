@@ -1,0 +1,65 @@
+<header>
+  <div class="leftSide">
+    @if (viewWidth <= RESPONSIVE_THRESHOLD && !this.toggleBoolean.isSidebarOpen)
+    {
+    <div class="logo" (click)="toggleSidebar()">
+      <img src="./assets/img/arrowLeft.png" />
+      <img src="./assets/img/sidebar/workspace-logo.svg" alt="" />
+      <p>Devspace</p>
+    </div>
+    } @else {
+    <img src="./assets/img/home-icon.svg" class="homeIcon" />
+    }
+  </div>
+  <div class="middleSide">
+    <app-search-bar [viewWidth]="viewWidth"></app-search-bar>
+  </div>
+  <div>
+    <div class="rightSide">
+      @for(i of userService.getCurentUsers(); track i){
+      <p class="fontNunito">{{ i.firstName }} {{ i.lastName }}</p>
+
+      <div class="img" (click)="showSideMenu()">
+        <img src="{{ i.avatar }}" class="profileImg" />
+        <img
+          src="./assets/img/{{
+            i.status ? 'onlineRing.svg' : 'offlineRing.svg'
+          }}"
+          class="onlineIcon"
+        />
+      </div>
+      }
+      <app-small-btn
+        class="positionPlanet"
+        [imgSrc]="'language.svg'"
+        [imgSize]="'32px'"
+        [btnSize]="'40px'"
+        [imgSize]="viewWidth >= RESPONSIVE_THRESHOLD_MOBILE ? '24px' : '17px'"
+        [btnSize]="viewWidth >= RESPONSIVE_THRESHOLD_MOBILE ? '36px' : '25px'"
+        [btnBgHoverColor]="'#edeefe'"
+        (click)="languageService.switchLanguage()"
+      ></app-small-btn>
+    </div>
+  </div>
+</header>
+
+<div
+  class="menu"
+  [ngClass]="{ dBlock: openMenu, dNone: !openMenu }"
+  (click)="showSideMenu()"
+>
+  <div class="whiteBox fontNunito">
+    <p (click)="showProfile()" class="profilBtn">
+      {{ "login-header.profil" | translate }}
+    </p>
+    <p (click)="logout()" class="logOutBtn">
+      {{ "login-header.logout" | translate }}
+    </p>
+  </div>
+</div>
+
+<app-edit-user
+  [ngClass]="{ dBlock: showCurrentProfile, dNone: !showCurrentProfile }"
+  [showCurrentProfile]="showCurrentProfile"
+  (testValueChange)="updateTestValue($event)"
+></app-edit-user>

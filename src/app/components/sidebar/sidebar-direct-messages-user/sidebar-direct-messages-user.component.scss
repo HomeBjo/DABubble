@@ -1,0 +1,59 @@
+@import "../../../../styles.scss";
+
+section {
+  display: flex;
+  flex-direction: column;
+  max-height: 27vh;
+  margin: 18px 0 0 12px;
+  overflow: auto;
+  min-width: 300px;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  margin: 6px;
+  padding: 6px;
+  max-width: fit-content;
+  cursor: pointer;
+  .imgBox {
+    display: flex;
+    align-items: flex-end;
+    .userImg {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+    .onlineIcon {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      margin-left: -12px;
+    }
+  }
+  p {
+    font-size: 18px;
+    font-weight: 400;
+    padding: 0 12px 0 18px;
+    text-align: left;
+  }
+  &:hover,
+  &:active {
+    background-color: #edeefe;
+    border-radius: 36px;
+  }
+}
+
+.active {
+  cursor: default;
+  background-color: #edeefe;
+  border-radius: 36px;
+}
+
+
+@media screen and (max-width: $RESPONSIVE_THRESHOLD_MOBILE380px) {
+  section {
+    max-height: 22vh;
+  }
+}

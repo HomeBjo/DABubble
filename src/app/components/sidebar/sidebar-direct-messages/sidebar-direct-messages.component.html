@@ -1,0 +1,39 @@
+<section>
+  <div class="headline">
+    <div class="headlineText" (click)="minimizeAllUsers()">
+      <img
+        src="./assets/img/sidebar/{{
+          minimizeUsers ? 'arrow_right.png' : 'arrow-drop-down.svg'
+        }}"
+        class="arrowImg"
+      />
+      <img src="./assets/img/sidebar/account-circle.svg" alt="" />
+      <p>{{ "sidebar-direct-messages.messages" | translate }}</p>
+    </div>
+    @if (!showAllUsers) {
+    <div class="btnAllUsersWindow">
+      <app-small-btn
+        [imgSrc]="'add.svg'"
+        [imgSize]="'14px'"
+        [btnSize]="'28px'"
+        [btnBgHoverColor]="'#edeefe'"
+        (click)="toggleAllUsersWindow()"
+        style="margin-right: -11px"
+      >
+      </app-small-btn>
+    </div>
+    } @if (showAllUsers) {
+    <div class="invisibleDiv">
+      <app-show-all-users
+        [viewWidth]="viewWidth"
+        (toggleMemberListEmitter)="toggleMemberListEmitter($event)"
+      ></app-show-all-users>
+    </div>
+    }
+  </div>
+  <app-sidebar-direct-messages-user
+    [viewWidth]="viewWidth"
+    [currentChannel]="currentChannel"
+    [ngClass]="{ hideAllUsers: minimizeUsers, showAllUsers: !minimizeUsers }"
+  ></app-sidebar-direct-messages-user>
+</section>

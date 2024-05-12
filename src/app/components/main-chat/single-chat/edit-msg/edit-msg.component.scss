@@ -1,0 +1,162 @@
+@import "../../../../../styles.scss";
+
+form {
+  position: relative;
+  width: calc(100% - 24px);
+  textarea {
+    width: calc(100% - 6px);
+    height: 100px;
+    border: 0;
+    border-radius: 20px;
+    font-size: 18px;
+    font-weight: 400;
+    padding: 12px;
+    resize: none;
+    &:focus {
+      outline: none;
+    }
+    &:invalid {
+      border: 1px solid red;
+    }
+  }
+}
+
+app-emoji-picker {
+  position: absolute;
+  bottom: 50px;
+  left: 20px;
+  z-index: 5;
+}
+
+app-small-btn {
+  padding: 9px;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  width: 100%;
+}
+
+.btns {
+  padding: 12px 0;
+  .btn {
+    padding: 9px 15px;
+    border-radius: 50px;
+    border: 1px solid #6971f5;
+    background-color: #6971f5;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    &:disabled {
+      background-color: #686868;
+    }
+    &:first-child {
+      margin-right: 12px;
+      background-color: #fff;
+      color: #6971f5;
+    }
+    &:hover {
+      background-color: #444df2;
+      border-color: #444df2;
+      color: #fff;
+      &:disabled {
+        background-color: #686868;
+      }
+    }
+  }
+}
+
+.interactIcons {
+  cursor: pointer;
+  transition: filter 0.3s ease;
+  padding: 8px;
+  &:hover {
+    scale: 1.1;
+    background-color: #b7bae7;
+    border-radius: 50%;
+    filter: brightness(120%);
+  }
+}
+
+.disabledIcon {
+  filter: brightness(0) saturate(100%) invert(45%) sepia(75%) saturate(684%)
+    hue-rotate(204deg) brightness(101%) contrast(91%);
+}
+
+.files {
+  position: absolute;
+  padding-top: 12px;
+  top: 0;
+  right: -24px;
+}
+
+.fileBox {
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
+  padding: 5px 10px;
+  margin-bottom: 6px;
+  background-color: #eee;
+  max-width: 40px;
+  max-height: 20px;
+  margin-right: 12px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .fileIcons {
+    margin-left: 12px;
+    margin-right: 12px;
+    cursor: pointer;
+    &:hover {
+      filter: brightness(0) saturate(100%) invert(20%) sepia(40%)
+        saturate(6312%) hue-rotate(236deg) brightness(106%) contrast(90%);
+    }
+  }
+}
+
+.closeIcon {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  width: 16px;
+  object-fit: contain;
+  cursor: pointer;
+  &:hover {
+    filter: brightness(0) saturate(100%) invert(20%) sepia(78%) saturate(5090%)
+      hue-rotate(5deg) brightness(105%) contrast(103%);
+  }
+}
+
+@media screen and (max-width: $RESPONSIVE_THRESHOLD_MOBILE) {
+  .btns {
+    padding: 6px 0;
+    .btn {
+      padding: 6px 12px;
+      border-radius: 40px;
+      font-size: 14px;
+      &:first-child {
+        margin-right: 6px;
+      }
+    }
+  }
+
+  app-small-btn {
+    padding: 6px;
+  }
+
+  form {
+    width: calc(100% - 12px);
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .btns {
+    .btn {
+      padding: 4px 8px;
+      font-size: 12px;
+    }
+  }
+}

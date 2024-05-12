@@ -1,0 +1,150 @@
+<div class="darkBackground" (click)="toggleShowAddChannelBox()"></div>
+<div
+  class="grayBackground"
+  (click)="toggleShowAddChannelBox()"
+  [ngStyle]="{
+    display: showNextWindowMobile ? 'block' : 'none'
+  }"
+></div>
+
+<div class="newChannelDescription">
+  @if (!showNextWindow) {
+  <div class="whiteWindow">
+    <div class="posiotionHeader">
+      <p>{{ 'add-new-channel.header' | translate }}</p>
+      <app-small-btn
+        [imgSrc]="'closeIcon.svg'"
+        [imgSize]="'16px'"
+        [btnSize]="'32px'"
+        [btnBgHoverColor]="'#edeefe'"
+        (click)="toggleShowAddChannelBox()"
+      ></app-small-btn>
+    </div>
+    <span class="infoMsg"
+      >{{ 'add-new-channel.info' | translate }}</span
+    >
+    <div class="descriptionBox">
+      <p>{{ 'add-new-channel.header2' | translate }}</p>
+      &nbsp;
+      <span>{{ 'add-new-channel.required' | translate }}</span>
+      @if (chechIfChannelExist(channelName)) {
+        <p class="warning">{{ 'add-new-channel.warning' | translate }}</p>
+      }
+      <img
+        class="hashtag"
+        src="./assets/img/hashtag.svg"
+        alt=""
+      />
+    </div>
+    <input
+      type="text"
+      class="textfieldStyle hashtagPadding"
+      placeholder="{{ 'add-new-channel.placeholder' | translate }}"
+      maxlength="20"
+      [(ngModel)]="channelName"
+      (keyup)="checkIfChannelNameIsValid(channelName)"
+    />
+    <div class="descriptionBox">
+      <p>{{ 'add-new-channel.description' | translate }}</p>
+      &nbsp;
+      <span>{{ 'add-new-channel.optional' | translate }}</span>
+    </div>
+    <textarea
+      id=""
+      cols="30"
+      rows="10"
+      class="textfieldStyle"
+      [(ngModel)]="channelDescription"
+      placeholder="{{ 'add-new-channel.placeholder2' | translate }}"
+    ></textarea>
+    <div class="btnBox">
+      <button
+        (click)="createNewChannel()"
+        [disabled]="!channelService.btnIsValid"
+        [ngClass]="{
+          disabledBtn: !channelService.btnIsValid,
+          furterBtnClass: channelService.btnIsValid
+        }"
+      >
+      {{ 'add-new-channel.create' | translate }}
+      </button>
+    </div>
+  </div>
+  } @if (showNextWindow || showNextWindowMobile) {
+  <div class="smalWhiteBox" (click)="toggleAddedUserBox()">
+    <div class="headerAddPeople">
+      <h2> {{ 'add-new-channel.addPeople' | translate }}</h2>
+      <app-small-btn
+        [imgSrc]="'closeIcon.svg'"
+        [imgSize]="'16px'"
+        [btnSize]="'32px'"
+        [btnBgHoverColor]="'#edeefe'"
+        (click)="toggleShowAddChannelBox()"
+      ></app-small-btn>
+    </div>
+    <div class="positionSelectionBtn">
+      <img
+        src="./assets/img/{{
+          changeImg ? 'radioButtonUnchecked.svg' : 'radioButtonChecked.svg'
+        }}"
+        alt=""
+        (click)="toggleBtnFalse()"
+      />
+      <p> {{ 'add-new-channel.addAll' | translate }}&nbsp;<span> {{ 'add-new-channel.devspace' | translate }}</span></p>
+    </div>
+    <div class="positionSelectionBtn">
+      <img
+        src="./assets/img/{{
+          !changeImg ? 'radioButtonUnchecked.svg' : 'radioButtonChecked.svg'
+        }}"
+        (click)="toggleBtnTrue()"
+      />
+      <p> {{ 'add-new-channel.add' | translate }}</p>
+    </div>
+    <div class="addedUserBox" *ngIf="changeImg">
+      <div
+        class="userPosition"
+        *ngFor="let user of getSelectedUsers; let i = index"
+      >
+        <img src="{{ user.avatar }}" class="avatarImg" />
+        <h3>{{ user.firstName }} {{ user.lastName }}</h3>
+        <img
+          src="./assets/img/closeIcon.svg"
+          class="imgClose"
+          (click)="spliceCurrentUser(i)"
+        />
+      </div>
+      <input
+        type="text"
+        class="inputfieldStyle"
+        [(ngModel)]="userName"
+        (keyup)="filterUsers(userName)"
+      />
+      <div
+        class="showSearchedUsersWindow"
+        [ngClass]="{ dBlock: showExistenUsers, dNone: !showExistenUsers }"
+      >
+        <div class="positionOfAllUsersInBox">
+          @for(user of getSearchedUser; track user){
+          <div class="user" (click)="chooseUser(user)">
+            <div class="positionImgs">
+              <img src="{{ user.avatar }}" class="avatarImg" />
+              <img
+                src="./assets/img/{{
+                  user.status ? 'onlineRing.svg' : 'offlineRing.svg'
+                }}"
+                class="onlineIcon"
+              />
+            </div>
+            <h1>{{ user.firstName }} {{ user.lastName }}</h1>
+          </div>
+          }
+        </div>
+      </div>
+    </div>
+    <div class="positionCreateBtn">
+      <button class="btnBox" (click)="addNewChannel()"> {{ 'add-new-channel.create' | translate }}</button>
+    </div>
+  </div>
+  }
+</div>

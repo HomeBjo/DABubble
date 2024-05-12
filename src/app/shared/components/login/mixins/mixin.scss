@@ -1,0 +1,137 @@
+@mixin SektionBody {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  background: #eceefe;
+  height: 100vh;
+}
+@mixin Card {
+  max-width: 606px;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 30px;
+  box-sizing: border-box;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  gap: 16px;
+  height: 690px;
+}
+@mixin topText {
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 110%;
+  > span {
+    text-align: center;
+    font-size: 46px;
+    font-weight: 700;
+    color: #444df2;
+  }
+}
+
+.loginBackImg {
+  cursor: pointer;
+}
+@mixin InfoText {
+  margin-bottom: 24px;
+  text-align: center;
+  max-width: 486px;
+  > span {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+  }
+}
+
+@mixin inputStyle {
+  padding-left: 60px;
+  border: 1px solid #ffff;
+  font-size: 18px;
+  font-weight: 500;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+  background: #eceefe;
+  height: 60px;
+  border-radius: 100px;
+  &:hover {
+    border: 1px solid#686868;
+  }
+  &:focus {
+    border: 1px solid #444df2;
+  }
+}
+@mixin errorStyle {
+  color: #ed1e79;
+  position: absolute;
+  margin: 4px;
+  font-size: 14px;
+}
+
+@mixin buttonGrey {
+  padding: 12px 25px;
+  color: #fff;
+  background-color: #cacad6;
+  outline: none;
+  border: none;
+  box-sizing: border-box;
+  transition: 0.2s;
+  border-radius: 25px;
+  font-size: 18px;
+  font-weight: 600;
+}
+@mixin aktivButtonBlue {
+  padding: 12px 25px;
+  color: #fff;
+  background-color: #444df2;
+  outline: none;
+  border: none;
+  box-sizing: border-box;
+  transition: 0.2s;
+  border-radius: 25px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  &:hover {
+    background-color: #676eec;
+  }
+}
+
+.mobileRegisterContainer {
+  display: none;
+  > div {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+    > span {
+      font-weight: 400;
+      font-size: 18px;
+    }
+  }
+}
+.mobileCreateAccountContainer {
+  display: flex;
+  justify-content: end;
+}
+.mobileCreateAccoun {
+  font-family: Figtree, sans-serif, Nunito;
+  color: #797ef3;
+  cursor: pointer;
+  padding: 4px 12px 4px 12px;
+  border-radius: 100px;
+  border: 1px solid #eceefe;
+  font-weight: 400;
+  font-size: 18px;
+  &:hover {
+    font-weight: 500;
+    background-color: #eceefe;
+    color: #444df2;
+    border: 1px solid #444df2;
+  }
+}

@@ -1,0 +1,87 @@
+section {
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
+}
+
+.headline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.invisibleDiv {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+.btnAllUsersWindow {
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  padding-right: 12px;
+  width: 60px;
+}
+
+.headlineText {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  .arrowImg {
+    width: 10px;
+    height: 10px;
+    object-fit: contain;
+  }
+  img {
+    &:first-child {
+      padding-right: 24px;
+    }
+    &:nth-child(2) {
+      padding-right: 6px;
+    }
+  }
+  p {
+    font-size: 20px;
+    font-weight: 700;
+  }
+  &:hover {
+    filter: invert(25%) sepia(100%) saturate(1833%) hue-rotate(230deg)
+      brightness(101%) contrast(89%);
+  }
+}
+
+.showAllUsers {
+  animation-name: slideIn;
+  transition: max-height 0.3s ease-in-out;
+  overflow: hidden;
+  max-height: 32vh;
+}
+
+@keyframes slideIn {
+  from {
+    height: 0;
+  }
+
+  to {
+    height: 100%;
+  }
+}
+
+.hideAllUsers {
+  transition: max-height 0.3s ease-in-out;
+  animation-name: slideOut;
+  overflow: hidden;
+  max-height: 0;
+}
+
+@keyframes slideOut {
+  from {
+    max-height: 0;
+  }
+
+  to {
+    max-height: 32vh;
+  }
+}

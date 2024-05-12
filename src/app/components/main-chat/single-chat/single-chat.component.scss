@@ -1,0 +1,216 @@
+@import "../../../../styles.scss";
+
+section {
+  display: flex;
+  justify-content: flex-start;
+  padding: 32px 48px;
+  position: relative;
+  &:hover {
+    background-color: #edeefe;
+    .userContent {
+      .content {
+        background-color: #fff;
+      }
+    }
+  }
+}
+
+.chat {
+  display: flex;
+  flex-direction: column;
+}
+
+.menuRightSide {
+  position: absolute;
+  top: -24px;
+  right: 12px;
+  z-index: 2;
+}
+
+.menuLeftSide {
+  position: absolute;
+  top: -24px;
+  left: 12px;
+  z-index: 2;
+}
+
+.chatBox {
+  display: flex;
+  width: 100%;
+  max-width: 100%;
+}
+
+.userAvatar {
+  img {
+    width: 70px;
+    height: 70px;
+    border-radius: 100%;
+  }
+}
+
+.chat {
+  .name {
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 700;
+    span {
+      font-size: 14px;
+      font-weight: 400;
+    }
+  }
+
+  .content {
+    max-width: 100%;
+    overflow-x: auto;
+    margin-top: 6px;
+    padding: 12px;
+    font-size: 18px;
+    font-weight: 400;
+    border-top-right-radius: 24px;
+    border-bottom-left-radius: 24px;
+    border-bottom-right-radius: 24px;
+    background-color: #eceefe;
+    .msg {
+      position: relative;
+      width: fit-content;
+      span {
+        font-size: 12px;
+        font-style: italic;
+      }
+    }
+    app-attachments  {
+      height: 200px;
+    }
+  }
+}
+
+.content-mirror {
+  color: #fff;
+  border-top-left-radius: 24px;
+  border-top-right-radius: 0 !important;
+  background-color: #797ef3 !important;
+}
+
+.answers {
+  display: flex;
+  align-items: center;
+  margin: 12px 0 6px 0;
+  p {
+    margin-right: 2px;
+    font-size: 18px;
+    font-weight: 400;
+    color: #535af1;
+    cursor: pointer;
+    &:hover {
+      margin-right: 0;
+      font-weight: 700;
+      color: #444df2;
+    }
+  }
+  span {
+    padding-left: 12px;
+    font-size: 14px;
+    font-weight: 400;
+  }
+}
+
+.spacer {
+  margin: 9px;
+}
+
+.editForm {
+  width: 100%;
+  border-radius: 20px;
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+/*------------- ANIMATION -------------*/
+
+.animation-coming-in-left {
+  animation: coming-in-left 125ms ease-in-out forwards;
+}
+
+.animation-coming-in-right {
+  animation: coming-in-right 125ms ease-in-out forwards;
+}
+
+.animation-coming-out-left {
+  animation: coming-out-left 125ms ease-in-out forwards;
+}
+.animation-coming-out-right {
+  animation: coming-out-right 125ms ease-in-out forwards;
+}
+
+@keyframes coming-in-left {
+  0% {
+    opacity: 0;
+    transform: translateX(-12px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes coming-out-left {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-12px);
+  }
+}
+
+@keyframes coming-in-right {
+  0% {
+    opacity: 0;
+    transform: translateX(12px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes coming-out-right {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(12px);
+  }
+}
+
+/*------------- RESPONSIVE -------------*/
+
+@media screen and (max-width: $RESPONSIVE_THRESHOLD_MOBILE) {
+  section {
+    padding: 24px 12px;
+  }
+
+  .userAvatar {
+    img {
+      width: 50px;
+      height: 50px;
+    }
+  }
+
+  .content {
+    font-size: 17px;
+  }
+
+  .answers {
+    p {
+      font-size: 14px;
+    }
+    span {
+      font-size: 12px;
+    }
+  }
+}

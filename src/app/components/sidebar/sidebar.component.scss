@@ -1,0 +1,61 @@
+@import "./../../../styles.scss";
+
+section {
+  height: 100%;
+  border-radius: 24px;
+  background-color: #fff;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  padding-right: 12px;
+  width: 60px;
+}
+
+.headline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .logo {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    img {
+      width: 60px;
+      height: 60px;
+      background-color: black;
+      border-radius: 100%;
+      margin-right: 12px;
+    }
+    p {
+      font-size: 24px;
+      font-weight: 700;
+    }
+  }
+}
+
+.channels,
+.directMessages,
+.headline {
+  padding: 36px 36px 0 36px;
+}
+
+.searchBar {
+  padding: 12px;
+}
+
+/*------------- RESPONSIVE -------------*/
+
+@media screen and (max-width: $RESPONSIVE_THRESHOLD_MOBILE) {
+  section {
+    border-radius: 0;
+  }
+
+  .channels,
+  .directMessages,
+  .headline {
+    padding: 12px;
+  }
+}

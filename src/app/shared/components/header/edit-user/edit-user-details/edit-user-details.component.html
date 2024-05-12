@@ -1,0 +1,106 @@
+<div class="grayBackground" (click)="closeEditUserWindow()"></div>
+@for(i of userService.getCurentUsers(); track i){
+<div class="whiteBox">
+  <form
+    (ngSubmit)="saveNewUserData(contactForm)"
+    #contactForm="ngForm"
+    onsubmit="return false"
+  >
+    <div class="boxHeader fontNunito">
+      <h2 class="fontNunito">{{ "edit-user-details.profile" | translate }}</h2>
+      <app-small-btn
+        [imgSrc]="'closeIcon.svg'"
+        [imgSize]="'18px'"
+        [btnSize]="'32px'"
+        [btnBgHoverColor]="'#edeefe'"
+        (click)="closeEditUserWindow()"
+      ></app-small-btn>
+    </div>
+
+    <img src="{{ i.avatar }}" class="profileImg" />
+
+    <div class="inputBox">
+      <div class="positionName">
+        <div class="positionNameIcon">
+          <img src="./assets/img/personCircle.svg" />
+          <p class="fontNunito">
+            {{ "edit-user-details.fullName" | translate }}
+          </p>
+        </div>
+        @if (!filterGuest()) {
+        <!--guest input-->
+        <input
+          class="inputDisabled"
+          type="text"
+          [(ngModel)]="userService.nameValue"
+          required
+          [disabled]="asGuestOnline"
+          name="fullName"
+        />
+        } @else {
+        <input
+          #inputName
+          class="inputName"
+          type="text"
+          [(ngModel)]="userService.nameValue"
+          placeholder="{{ 'edit-user-details.placeholder' | translate }}"
+          required
+          minlength="3"
+          (ngModelChange)="checkIfUserNameIsValid($event)"
+          name="fullName"
+        />
+        }
+      </div>
+
+      <div class="positionName">
+        <div class="positionNameIcon">
+          <img src="./assets/img/mail-iconBlack.svg" />
+          <p class="fontNunito">{{ "edit-user-details.email" | translate }}</p>
+        </div>
+        @if (!filterGuest()) {
+        <!--guest input-->
+        <input
+          class="inputDisabled"
+          type="email"
+          required
+          name="emailValue"
+          [disabled]="asGuestOnline"
+        />
+        } @else {
+        <input
+          #inputEmail
+          class="inputName"
+          type="email"
+          required
+          name="email"
+          id="email"
+          pattern="[^@]+@[^\.]+\..+"
+          placeholder="{{ 'edit-user-details.placeholder2' | translate }}"
+          [(ngModel)]="userService.emailValue"
+          (ngModelChange)="checkIfUserEmailIsValid($event)"
+        />
+        }
+      </div>
+    </div>
+
+    <div class="position2Btn">
+      <button class="cancelBtn" (click)="closeEditUserWindow()">
+        {{ "edit-user-details.cancel" | translate }}
+      </button>
+      <button
+        type="submit"
+        [disabled]="!channelService.saveEditBtnIsValid"
+        [ngClass]="{
+          disabledBtn: !channelService.saveEditBtnIsValid,
+          saveBtn: channelService.saveEditBtnIsValid
+        }"
+      >
+        {{ "edit-user-details.save" | translate }}
+      </button>
+    </div>
+    @if (asGuestOnline) {
+    <p>{{ "edit-user-details.errorMessage" | translate }}</p>
+    }
+  </form>
+</div>
+}

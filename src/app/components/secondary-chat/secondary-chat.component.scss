@@ -1,0 +1,129 @@
+@import "./../../../styles.scss";
+
+section {
+  height: 100%;
+  width: 100%;
+  border-radius: 24px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 40px;
+  padding: 24px 48px;
+  box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.05);
+}
+
+.messages {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.content {
+  height: calc(100vh - 500px);
+  overflow-y: auto;
+  padding: 28px 0;
+}
+
+.headline {
+  display: flex;
+  align-items: center;
+  font-size: 24px;
+  font-weight: 700;
+  span {
+    font-size: 14px;
+    font-weight: 400;
+    color: #797ef3;
+    padding-left: 12px;
+  }
+}
+
+.close {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+  &:hover {
+    background-color: #edeefe;
+    border-radius: 100%;
+    img {
+      width: 16px;
+      height: 16px;
+    }
+  }
+  img {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+.spacer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 48px;
+  margin-bottom: 12px;
+  p {
+    display: flex;
+    justify-content: center;
+    width: 30%;
+    font-size: 18px;
+    font-weight: 400;
+    color: #adb0d9;
+  }
+  .line {
+    width: 70%;
+    margin: 24px 6px;
+    border: 1px solid #adb0d9;
+    opacity: 0.4;
+  }
+}
+
+.mirror {
+  transform: scaleX(-1);
+}
+
+//----------- responsive ---------------
+
+@media screen and (max-width: $RESPONSIVE_THRESHOLD_MOBILE) {
+  section {
+    height: calc(100vh - 80px);
+    border-radius: 0;
+  }
+
+  .header {
+    height: 36px;
+    padding: 12px;
+  }
+
+  .content {
+    height: calc(100vh - 350px);
+  }
+
+  .spacer {
+    padding: 0 12px;
+    p {
+      font-size: 16px;
+    }
+    .line {
+      width: 70%;
+      margin: 24px 0px 24px 12px;
+    }
+  }
+}
+
+@media screen and (max-width: $RESPONSIVE_THRESHOLD_MOBILE380px) {
+  section {
+    height: calc(100vh - 80px);
+  }
+  .content {
+    height: calc(100vh - 350px);
+  }
+}
