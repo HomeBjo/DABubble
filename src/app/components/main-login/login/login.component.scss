@@ -164,6 +164,7 @@ button {
   position: absolute;
   top: 18px;
   right: 25px;
+  cursor: pointer;
 }
 @media (max-width: 570px) {
   .loginTop {
@@ -246,4 +247,8 @@ button {
   .loginContainer {
     max-width: 306px;
   }
+  .error{
+    font-size: 11px;
+  }
+
 }

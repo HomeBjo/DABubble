@@ -79,6 +79,7 @@ button {
   position: absolute;
   top: 18px;
   right: 25px;
+  cursor: pointer;
 }
 
 @media (max-width: 570px) {
@@ -131,5 +132,8 @@ button {
   .registerContainer {
     max-width: 306px;
     gap: 12px !important;
+  }
+  .error{
+    font-size: 11px;
   }
 }
