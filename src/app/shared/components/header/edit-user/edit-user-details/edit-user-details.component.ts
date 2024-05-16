@@ -78,7 +78,7 @@ export class EditUserDetailsComponent {
         this.changeNameValue();
         this.userService.updateUserData(
           getName[0],
-          getName[1],
+          getName[1] || '' ,
           this.changedEmail
         );
 

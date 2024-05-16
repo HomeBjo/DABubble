@@ -45,3 +45,6 @@ Thumbs.db
 .firebase
 *-debug.log
 .runtimeconfig.json
+
+# Konfigurationsdatei ausschließen
+src/app/app.config.ts

@@ -44,7 +44,10 @@ export class PasswordForgetComponent {
     sendPasswordResetEmail(auth, this.email)
       .then(() => {
         ngForm.resetForm(ngForm);
-         this.router.navigate(['/login']);
+        setTimeout(() => {
+          this.router.navigate(['/login']);
+        }, 3500);
+      
       })
       .catch((error) => {
         const errorCode = error.code;
