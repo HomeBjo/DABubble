@@ -1,6 +1,12 @@
 # Dabubble
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.2.1.
+#  **Detaillierte Commit-Historie & Entwicklungseinblick** 
+
+**Für eine detaillierte Commit-Historie und eine Einsicht in den Entwicklungsprozess des Teams, besuchen Sie das Repository mit der vollständigen Commit-Historie:**
+
+🔗 **Gruppenarbeit Dabubble Repository:**  
+[https://github.com/Chneemann/gruppenarbeit-dabubble](https://github.com/Chneemann/gruppenarbeit-dabubble)
+
 
 ## Development server
 
