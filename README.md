@@ -1,8 +1,8 @@
 # Dabubble
 
-#  **Detaillierte Commit-Historie & Entwicklungseinblick** 
+#  **Detailed Commit History & Development Insights** 
 
-**Für eine detaillierte Commit-Historie und eine Einsicht in den Entwicklungsprozess des Teams, besuchen Sie das Repository mit der vollständigen Commit-Historie:**
+**For a detailed commit history and insights into the team's development process, please visit the project's repository:**
 
 🔗 **Gruppenarbeit Dabubble Repository:**  
 [https://github.com/Chneemann/gruppenarbeit-dabubble](https://github.com/Chneemann/gruppenarbeit-dabubble)
