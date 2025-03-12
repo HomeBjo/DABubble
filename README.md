@@ -4,7 +4,7 @@
 
 **For a detailed commit history and insights into the team's development process, please visit the project's repository:**
 
-🔗 **Gruppenarbeit Dabubble Repository:**  
+🔗 **Group project Dabubble Repository:**  
 [https://github.com/Chneemann/gruppenarbeit-dabubble](https://github.com/Chneemann/gruppenarbeit-dabubble)
 
 
